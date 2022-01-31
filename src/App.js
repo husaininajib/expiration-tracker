@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react"
 import "./App.css"
 import Form from "./components/Form"
+import ProductList from "./components/ProductList"
 
 function App() {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState(
+    JSON.parse(localStorage.getItem("products")) || []
+  )
   const [formData, setFormData] = useState({
     productName: "",
     imageURL: "",
@@ -12,6 +15,9 @@ function App() {
     unit: "kg",
     weightPerItem: 0,
   })
+
+  const date = new Date()
+  console.log(date.toLocaleString())
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
@@ -35,14 +41,17 @@ function App() {
     })
   }
 
-  console.log(products)
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products))
+  })
 
   return (
     <>
       <Form handleChange={handleChange} handleSubmit={submitFormData} />
+      <ProductList products={products} />
 
       <main>
-        <div>
+        {/* <div>
           <img src="" alt="" />
           <div>
             <h2>Lamb</h2>
@@ -61,7 +70,7 @@ function App() {
             <option value="expiryDate">Expiry date</option>
             <option value="expiryDate">Product Name</option>
           </select>
-        </div>
+        </div> */}
       </main>
     </>
   )
