@@ -4,23 +4,32 @@ const ProductList = (props) => {
   return (
     <>
       {props.products.map((product, index) => {
+        const totalWeight = product.quantity * product.weightPerItem
         return (
-          <article key={index}>
-            <div>
-              <h2>{product.productName}</h2>
-              <span>50 days till expired</span>
+          <article key={index} className="border p-4">
+            <div className="flex gap-4">
+              <img
+                src={product.imageURL}
+                alt=""
+                className="w-20 h-20 rounded-lg"
+              />
+              <div>
+                <h2 className="uppercase font-bold">{product.productName}</h2>
+                <p className="font-semibold">
+                  50 days till expired ({product.expiryDate.toLocaleString()})
+                </p>
+                <ul className="flex gap-2 font-semibold">
+                  <li className="">
+                    {product.quantity} CTN / {totalWeight} {product.unit}
+                  </li>
+                  <li className="capitalize">Stocks left</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <span>Expired Date:</span>
-              <span>{product.expiryDate.toLocaleString()}</span>
-            </div>
-            <div>
-              <img src={product.imageURL} alt="" />
-              <ul>
-                <li>Remaining Stocks: {product.quantity}</li>
-                <li>Weight: {product.quantity * product.weightPerItem}</li>
-              </ul>
-            </div>
+            <ul className="font-semibold capitalize flex  gap-2 mt-4 border">
+              <li className="">Add Stock</li>
+              <li className="">Remove Stock</li>
+            </ul>
           </article>
         )
       })}
