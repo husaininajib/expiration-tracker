@@ -1,11 +1,11 @@
 # Expiration Tracker
 
-This main purpose of this project is to solve the issues for restaurant business that wanted to reduce the spoilage cost due to the inventory is been expired.
+The main purpose of this project is to optimize product costs before spoilage occurs, that way reducing spoilage losses and increasing the overall profit margin.
 
 ## How this App works?
 
-The user will update the expiration date for the products in this app. So the user will aware what products that need to be sold first. which is the products that close to expired date.
+As the company updates each expiration date inside the application management system it will suggest each item discount the closer they arrive at the expiration date.
 
 ### Results
 
-The use can maximize the margin for the products sold as the cost of spoilage can be reduced.
+A better management system for the expiration date of each product reduces the spoilage cost and results in an increase on the final profit margin of the company.
