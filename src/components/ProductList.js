@@ -5,8 +5,14 @@ const ProductList = (props) => {
     <>
       {props.products.map((product, index) => {
         const totalWeight = product.quantity * product.weightPerItem
+        const minute = 1000 * 60
+        const hours = minute * 60
+        const day = hours * 24
+        const expiryDate = new Date(product.expiryDate).getTime() / day
+        const currentDate = new Date().getTime() / day
+        const countdown = Math.floor(expiryDate - currentDate)
         return (
-          <article key={index} className="border p-4">
+          <article key={index} className="border p-4 w-full">
             <div className="flex gap-4">
               <img
                 src={product.imageURL}
@@ -16,7 +22,8 @@ const ProductList = (props) => {
               <div>
                 <h2 className="uppercase font-bold">{product.productName}</h2>
                 <p className="font-semibold">
-                  50 days till expired ({product.expiryDate.toLocaleString()})
+                  {countdown} days till expired (
+                  {product.expiryDate.toLocaleString()})
                 </p>
                 <ul className="flex gap-2 font-semibold">
                   <li className="">
@@ -29,6 +36,7 @@ const ProductList = (props) => {
             <ul className="font-semibold capitalize flex  gap-2 mt-4 border">
               <li className="">Add Stock</li>
               <li className="">Remove Stock</li>
+              <li className="">Delete Product</li>
             </ul>
           </article>
         )

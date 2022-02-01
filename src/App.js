@@ -16,8 +16,15 @@ function App() {
     weightPerItem: 0,
   })
 
+  const minute = 1000 * 60
+  const hours = minute * 60
+  const day = hours * 24
+  const year = day * 365
+
   const date = new Date()
-  console.log(date.toLocaleString())
+  const futureDate = new Date("2022-04-14")
+  console.log(Math.floor(date.getTime() / day))
+  console.log(futureDate.getTime() / day)
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
