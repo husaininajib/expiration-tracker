@@ -9,3 +9,11 @@ As the company updates each expiration date inside the application management sy
 ### Results
 
 A better management system for the expiration date of each product reduces the spoilage cost and results in an increase on the final profit margin of the company.
+
+
+# TODO
+
+- Declare to user unit for 'Weight per Item'
+- After submit fields should be emptied
+- 'days till expired' not dinamic ProductList.js l.11
+- Add way to remove each added item
