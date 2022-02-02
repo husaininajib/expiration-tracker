@@ -1,6 +1,28 @@
 import React from "react"
+import Button from "./Button"
 
 const ProductList = (props) => {
+  function handleAdd(id) {
+    console.log(id)
+  }
+
+  const handleRemove = (id) => {
+    props.setProducts((prev) =>
+      prev.map((item) => {
+        if (parseInt(item.quantity) > 0) {
+          return { ...item, quantity: parseInt(item.quantity) - 1 }
+        }
+      })
+    )
+  }
+
+  const removeProduct = (productId) => {
+    const newProducts = props.products.filter((product) => {
+      return productId !== product.productName
+    })
+    props.setProducts(newProducts)
+  }
+
   return (
     <>
       {props.products.map((product, index) => {
@@ -11,6 +33,7 @@ const ProductList = (props) => {
         const expiryDate = new Date(product.expiryDate).getTime() / day
         const currentDate = new Date().getTime() / day
         const countdown = Math.floor(expiryDate - currentDate)
+
         return (
           <article key={index} className="border p-4 w-full">
             <div className="flex gap-4">
@@ -33,11 +56,15 @@ const ProductList = (props) => {
                 </ul>
               </div>
             </div>
-            <ul className="font-semibold capitalize flex  gap-2 mt-4 border">
-              <li className="">Add Stock</li>
-              <li className="">Remove Stock</li>
-              <li className="">Delete Product</li>
-            </ul>
+            <div className="flex gap-4">
+              <button onClick={() => handleAdd(product.productName)}>
+                Add
+              </button>
+              <button onClick={() => handleRemove(product.productName)}>
+                Remove
+              </button>
+              <button onClick={() => removeProduct()}>Delete</button>
+            </div>
           </article>
         )
       })}
