@@ -4,7 +4,7 @@ import Button from "./Button"
 const ProductList = ({ products, setProducts }) => {
   const [count, setCount] = useState(0)
 
-  function handleAdd(quantity) {
+  function handleAdd(id) {
     // FIXME: Tried to experiment by creating count state but not working and looks like doesn't make sense
     // setCount(quantity)
     // setCount((prev) => prev + 1)
@@ -76,7 +76,7 @@ const ProductList = ({ products, setProducts }) => {
               </div>
             </div>
             <div className="flex gap-4">
-              <button onClick={() => handleAdd(product.quantity)}>Add</button>
+              <button onClick={() => handleAdd(product.id)}>Add</button>
               <button onClick={() => handleRemove(product.id)}>Remove</button>
               <button onClick={() => deleteProduct(product.id)}>Delete</button>
             </div>
