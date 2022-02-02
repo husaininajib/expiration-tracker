@@ -1,13 +1,32 @@
-import React from "react"
+import React, { useState } from "react"
 import Button from "./Button"
 
-const ProductList = (props) => {
-  function handleAdd(id) {
-    console.log(id)
+const ProductList = ({ products, setProducts }) => {
+  const [count, setCount] = useState(0)
+
+  function handleAdd(quantity) {
+    // FIXME: Tried to experiment by creating count state but not working and looks like doesn't make sense
+    // setCount(quantity)
+    // setCount((prev) => prev + 1)
+    // console.log(count)
+    // FIXME: when put if statement, got an error
+    // setProducts((currentProduct) =>
+    //   currentProduct.map((item) => {
+    //     // if (item.id === id) {
+    //     return { ...item, quantity: item.quantity + 1 }
+    //     // }
+    //   })
+    // )
+    //FIXME: this solution updates the state and display but all product element been updated.
+    setProducts((currentProduct) =>
+      currentProduct.map((item) => {
+        return { ...item, quantity: item.quantity + 1 }
+      })
+    )
   }
 
-  const handleRemove = (id) => {
-    props.setProducts((prev) =>
+  function handleRemove(id) {
+    setProducts((prev) =>
       prev.map((item) => {
         if (parseInt(item.quantity) > 0) {
           return { ...item, quantity: parseInt(item.quantity) - 1 }
@@ -16,16 +35,16 @@ const ProductList = (props) => {
     )
   }
 
-  const removeProduct = (productId) => {
-    const newProducts = props.products.filter((product) => {
-      return productId !== product.productName
+  const deleteProduct = (id) => {
+    const newProducts = products.filter((product) => {
+      return id !== product.id
     })
-    props.setProducts(newProducts)
+    setProducts(newProducts)
   }
 
   return (
     <>
-      {props.products.map((product, index) => {
+      {products.map((product, index) => {
         const totalWeight = product.quantity * product.weightPerItem
         const minute = 1000 * 60
         const hours = minute * 60
@@ -57,13 +76,9 @@ const ProductList = (props) => {
               </div>
             </div>
             <div className="flex gap-4">
-              <button onClick={() => handleAdd(product.productName)}>
-                Add
-              </button>
-              <button onClick={() => handleRemove(product.productName)}>
-                Remove
-              </button>
-              <button onClick={() => removeProduct()}>Delete</button>
+              <button onClick={() => handleAdd(product.quantity)}>Add</button>
+              <button onClick={() => handleRemove(product.id)}>Remove</button>
+              <button onClick={() => deleteProduct(product.id)}>Delete</button>
             </div>
           </article>
         )
