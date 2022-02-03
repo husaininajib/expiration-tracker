@@ -9,7 +9,7 @@ const Form = (props) => {
     <div>
       <form action="" className="grid gap-2" onSubmit={props.handleSubmit}>
         {inputData.map((input, index) => {
-          const { type, name, id, label } = input
+          const { type, name, id, label, value } = input
           return (
             <Input
               key={index}

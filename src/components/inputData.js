@@ -1,6 +1,7 @@
 export default [
   {
     type: "text",
+    value: "",
     name: "productName",
     id: "product-name",
     placeholder: "Product name",
@@ -8,6 +9,7 @@ export default [
   },
   {
     type: "url",
+    value: "",
     name: "imageURL",
     id: "image-url",
     placeholder: "Image URL",
@@ -15,6 +17,7 @@ export default [
   },
   {
     type: "date",
+    value: "",
     name: "expiryDate",
     id: "date",
     placeholder: "",
@@ -22,6 +25,7 @@ export default [
   },
   {
     type: "number",
+    value: "",
     name: "quantity",
     id: "quantity",
     placeholder: "Quantity Purchased",
@@ -29,6 +33,7 @@ export default [
   },
   {
     type: "number",
+    value: "",
     name: "weightPerItem",
     id: "weightPerItem",
     placeholder: "Weight Per Item",

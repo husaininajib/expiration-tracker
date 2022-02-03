@@ -3,6 +3,7 @@ import "./App.css"
 import Form from "./components/Form"
 import ProductList from "./components/ProductList"
 import { nanoid } from "nanoid"
+import { HiViewGrid } from "react-icons/hi"
 
 function App() {
   const [products, setProducts] = useState(
@@ -41,6 +42,15 @@ function App() {
         return newProducts
       })
     } else console.log("please fill in the form")
+
+    setFormData({
+      productName: "",
+      imageURL: "",
+      expiryDate: "",
+      quantity: 0,
+      unit: "kg",
+      weightPerItem: 0,
+    })
   }
 
   useEffect(() => {
@@ -49,7 +59,22 @@ function App() {
 
   return (
     <>
-      <Form handleChange={handleChange} handleSubmit={submitFormData} />
+      <header>
+        <nav
+          className="flex items-center justify-between h-14 text-white"
+          style={{ backgroundColor: "#7A3BED" }}
+        >
+          <a href="">Inventory Tracker</a>
+          <div>
+            <HiViewGrid />
+          </div>
+        </nav>
+      </header>
+      {/* <Form
+        handleChange={handleChange}
+        handleSubmit={submitFormData}
+        formData={formData}
+      /> */}
       <ProductList products={products} setProducts={setProducts} />
     </>
   )
