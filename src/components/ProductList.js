@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import Button from "./Button"
+import { HiOutlineMinusCircle, HiOutlineTrash } from "react-icons/hi"
+import { GrAddCircle } from "react-icons/gr"
 
 const ProductList = ({ products, setProducts }) => {
   const [count, setCount] = useState(0)
@@ -54,7 +56,7 @@ const ProductList = ({ products, setProducts }) => {
         const countdown = Math.floor(expiryDate - currentDate)
 
         return (
-          <article key={index} className="border p-4 w-full">
+          <article key={index} className="border w-full mt-7">
             <div className="flex gap-4">
               <img
                 src={product.imageURL}
@@ -73,13 +75,24 @@ const ProductList = ({ products, setProducts }) => {
                   </li>
                   <li className="capitalize">Stocks left</li>
                 </ul>
+                <ul className="flex gap-2 text-lg items-center mt-3">
+                  <li className="">
+                    <GrAddCircle />
+                  </li>
+                  <li>
+                    <HiOutlineMinusCircle />
+                  </li>
+                  <li className="ml-auto text-red-600">
+                    <HiOutlineTrash />
+                  </li>
+                </ul>
               </div>
             </div>
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <button onClick={() => handleAdd(product.id)}>Add</button>
               <button onClick={() => handleRemove(product.id)}>Remove</button>
               <button onClick={() => deleteProduct(product.id)}>Delete</button>
-            </div>
+            </div> */}
           </article>
         )
       })}

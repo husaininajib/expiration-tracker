@@ -6,8 +6,12 @@ import "./form.css"
 
 const Form = (props) => {
   return (
-    <div>
-      <form action="" className="grid gap-2" onSubmit={props.handleSubmit}>
+    <div className={`form-container ${props.showForm ? "show" : ""}`}>
+      <form
+        action=""
+        className="grid gap-2 border m-0 p-0"
+        onSubmit={props.handleSubmit}
+      >
         {inputData.map((input, index) => {
           const { type, name, id, label, value } = input
           return (

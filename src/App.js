@@ -3,9 +3,12 @@ import "./App.css"
 import Form from "./components/Form"
 import ProductList from "./components/ProductList"
 import { nanoid } from "nanoid"
-import { HiViewGrid } from "react-icons/hi"
+
+import Tools from "./components/Tools"
+import Navbar from "./components/Navbar"
 
 function App() {
+  const [showForm, setShowForm] = useState(false)
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products")) || []
   )
@@ -59,23 +62,26 @@ function App() {
 
   return (
     <>
-      <header>
-        <nav
-          className="flex items-center justify-between h-14 text-white"
-          style={{ backgroundColor: "#7A3BED" }}
-        >
-          <a href="">Inventory Tracker</a>
-          <div>
-            <HiViewGrid />
-          </div>
-        </nav>
-      </header>
-      {/* <Form
+      <Navbar showForm={showForm} setShowForm={setShowForm} />
+      <Form
         handleChange={handleChange}
         handleSubmit={submitFormData}
         formData={formData}
-      /> */}
-      <ProductList products={products} setProducts={setProducts} />
+        showForm={showForm}
+      />
+      <main>
+        <section className="px-4 mt-8">
+          <h2 className=" text-2xl font-semibold">Welcome</h2>
+          <p className="text-base mt-1">
+            Track your inventory life and reduce waste and spoilage.
+          </p>
+          <Tools openForm={() => setShowForm(true)} />
+        </section>
+        <section className="px-4 mt-4">
+          <h2 className="font-semibold text-2xl">My Inventory</h2>
+          <ProductList products={products} setProducts={setProducts} />
+        </section>
+      </main>
     </>
   )
 }

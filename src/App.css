@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+}
+
+.tools .card {
+  background-color: #d8c6f8;
+}
+.tools .card:nth-child(2) {
+  background-color: #f9e1d5;
+}
+.form-container {
+  position: fixed;
+  background-color: #f8f9d2;
+  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+  z-index: 2;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  transform: translateX(-100%);
+  transition: all 0.3s;
+}
+.form-container.show {
+  transform: translateX(0);
+}
+form {
+  min-width: 20rem;
+}
