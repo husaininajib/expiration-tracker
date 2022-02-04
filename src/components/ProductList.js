@@ -82,7 +82,10 @@ const ProductList = ({ products, setProducts }) => {
                   <li>
                     <HiOutlineMinusCircle />
                   </li>
-                  <li className="ml-auto text-red-600">
+                  <li
+                    className="ml-auto text-red-600"
+                    onClick={() => deleteProduct(product.id)}
+                  >
                     <HiOutlineTrash />
                   </li>
                 </ul>
