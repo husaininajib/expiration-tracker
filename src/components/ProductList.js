@@ -80,7 +80,9 @@ const ProductList = ({ products, setProducts }) => {
                     <GrAddCircle />
                   </li>
                   <li>
-                    <HiOutlineMinusCircle />
+                    <HiOutlineMinusCircle
+                      onClick={() => handleRemove(product.id)}
+                    />
                   </li>
                   <li
                     className="ml-auto text-red-600"
