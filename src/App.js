@@ -18,7 +18,7 @@ function App() {
     expiryDate: "",
     quantity: 0,
     unit: "kg",
-    weightPerItem: 0,
+    weightPerQuantity: 0,
   })
 
   // TODO: Update form changes
@@ -34,10 +34,16 @@ function App() {
   //TODO: Submit/push form to products state
   const submitFormData = (e) => {
     e.preventDefault()
-    const { productName, imageURL, expiryDate, quantity, unit, weightPerItem } =
-      formData
+    const {
+      productName,
+      imageURL,
+      expiryDate,
+      quantity,
+      unit,
+      weightPerQuantity,
+    } = formData
 
-    if (productName && expiryDate && quantity && unit && weightPerItem) {
+    if (productName && expiryDate && quantity && unit && weightPerQuantity) {
       const newFormData = { id: nanoid(), ...formData }
       setProducts((prevProducts) => {
         const newProducts = [...prevProducts]
@@ -52,7 +58,7 @@ function App() {
       expiryDate: "",
       quantity: 0,
       unit: "kg",
-      weightPerItem: 0,
+      weightPerQuantity: 0,
     })
   }
 

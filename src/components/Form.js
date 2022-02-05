@@ -1,5 +1,6 @@
 import React from "react"
 import Label from "./Label"
+import Input from "./Input"
 import inputData from "./inputData"
 import formStyle from "./formStyle"
 import "./form.css"
@@ -7,6 +8,14 @@ import Select from "./Select"
 
 const Form = ({ showForm, handleChange, handleSubmit, formData }) => {
   const { button, label, input } = formStyle
+  const {
+    productName,
+    imageURL,
+    expiryDate,
+    quantity,
+    unit,
+    weightPerQuantity,
+  } = formData
   return (
     <div className={`form-container ${showForm ? "show" : ""}`}>
       <form
@@ -16,50 +25,57 @@ const Form = ({ showForm, handleChange, handleSubmit, formData }) => {
       >
         <div className="grid">
           <Label htmlFor="text" title="Product Name" />
-          <input type="text" name="productName" className={input} />
+          <Input
+            type="text"
+            name="productName"
+            value={productName}
+            handleChange={handleChange}
+          />
         </div>
         <div className="grid">
           <Label htmlFor="url" title="Image URL" />
-          <input type="url" name="imageURL" className={input} />
+          <Input
+            type="url"
+            name="imageURL"
+            value={imageURL}
+            handleChange={handleChange}
+          />
         </div>
         <div className="grid">
           <Label htmlFor="date" title="Expiry Date" />
-          <input type="date" name="expiryDate" className={input} />
+          <Input
+            type="date"
+            name="expiryDate"
+            value={expiryDate}
+            handleChange={handleChange}
+          />
         </div>
         <div className="grid">
           <Label htmlFor="number" title="Quantity" />
-          <input type="number" name="quantity" className={input} />
+          <Input
+            type="number"
+            name="quantity"
+            value={quantity}
+            handleChange={handleChange}
+          />
         </div>
         <div className="grid">
           <Label htmlFor="number" title="Weight" />
-          <input type="number" name="weight" className={input} />
+          <Input
+            type="number"
+            name="weightPerQuantity"
+            value={weightPerQuantity}
+            handleChange={handleChange}
+          />
         </div>
-        {/* {inputData.map((input, index) => {
-          const { type, name, id, label, value } = input
-          return (
-            <Input
-              key={index}
-              type={type}
-              name={name}
-              label={label}
-              id={id}
-              formData={props.formData}
-              handleChange={props.handleChange}
-              inputStyle={formStyle.input}
-              labelStyle={formStyle.label}
-            />
-          )
-        })}
-        <Select name={["unitSKU, unitWeight"]} option={["CTN", "PKT"]} /> */}
-        <div className="grid">
+        {/* <div className="grid">
           <Label htmlFor="" title="Unit" />
           <select
             name="unit"
-            id="unit"
             className={input}
             onChange={handleChange}
           ></select>
-        </div>
+        </div> */}
         <button type="submit" className={button}>
           Submit
         </button>
