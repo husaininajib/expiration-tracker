@@ -16,9 +16,9 @@ function App() {
     productName: "",
     imageURL: "",
     expiryDate: "",
-    quantity: 0,
+    quantity: "",
     unit: "kg",
-    weightPerQuantity: 0,
+    weightPerQuantity: "",
   })
 
   // TODO: Update form changes
@@ -56,9 +56,9 @@ function App() {
       productName: "",
       imageURL: "",
       expiryDate: "",
-      quantity: 0,
+      quantity: "",
       unit: "kg",
-      weightPerQuantity: 0,
+      weightPerQuantity: "",
     })
   }
 

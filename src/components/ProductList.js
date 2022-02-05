@@ -6,6 +6,10 @@ import { GrAddCircle } from "react-icons/gr"
 const ProductList = ({ products, setProducts }) => {
   const [count, setCount] = useState(0)
 
+  const minute = 1000 * 60
+  const hours = minute * 60
+  const day = hours * 24
+
   function handleAdd(id) {
     // FIXME: Tried to experiment by creating count state but not working and looks like doesn't make sense
     // setCount(quantity)
@@ -47,10 +51,8 @@ const ProductList = ({ products, setProducts }) => {
   return (
     <>
       {products.map((product, index) => {
-        const totalWeight = product.quantity * product.weightPerItem
-        const minute = 1000 * 60
-        const hours = minute * 60
-        const day = hours * 24
+        const totalWeight = product.quantity * product.weightPerQuantity
+
         const expiryDate = new Date(product.expiryDate).getTime() / day
         const currentDate = new Date().getTime() / day
         const countdown = Math.floor(expiryDate - currentDate)
@@ -60,7 +62,7 @@ const ProductList = ({ products, setProducts }) => {
             <div className="flex gap-4">
               <img
                 src={product.imageURL}
-                alt=""
+                alt="product-image"
                 className="w-20 h-20 rounded-lg"
               />
               <div>
@@ -71,7 +73,8 @@ const ProductList = ({ products, setProducts }) => {
                 </p>
                 <ul className="flex gap-2 font-semibold">
                   <li className="">
-                    {product.quantity} CTN / {totalWeight} {product.unit}
+                    {product.quantity} CTN / {totalWeight.toFixed(2)}{" "}
+                    {product.unit}
                   </li>
                   <li className="capitalize">Stocks left</li>
                 </ul>
@@ -93,11 +96,6 @@ const ProductList = ({ products, setProducts }) => {
                 </ul>
               </div>
             </div>
-            {/* <div className="flex gap-4">
-              <button onClick={() => handleAdd(product.id)}>Add</button>
-              <button onClick={() => handleRemove(product.id)}>Remove</button>
-              <button onClick={() => deleteProduct(product.id)}>Delete</button>
-            </div> */}
           </article>
         )
       })}
