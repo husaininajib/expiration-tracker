@@ -62,9 +62,14 @@ const ProductList = ({ products, setProducts }) => {
     setProducts(newProducts)
   }
 
+  const toggleUnit = (id) => {
+    console.log(id)
+  }
+
   return (
     <>
       {sortedProducts.map((product, index) => {
+        const { quantity, weightPerQuantity } = product
         const totalWeight = product.quantity * product.weightPerQuantity
 
         const expiryDate = new Date(product.expiryDate).getTime() / day
@@ -80,13 +85,19 @@ const ProductList = ({ products, setProducts }) => {
                 className="w-20 h-20 rounded-lg"
               />
               <div>
-                <h2 className="uppercase font-bold">{product.productName}</h2>
+                <div className="flex justify-between">
+                  <h2 className="uppercase font-bold">{product.productName}</h2>
+                  <span className="capitalize">{product.category}</span>
+                </div>
                 <p className="font-semibold">
                   {countdown} days till expired ({product.expiryDate})
                 </p>
                 <ul className="flex gap-2 font-semibold">
                   <li className="">
-                    {product.quantity} PKT / {totalWeight.toFixed(2)}{" "}
+                    {product.quantity} PKT /
+                    {totalWeight % 1 !== 0
+                      ? totalWeight.toFixed(2)
+                      : totalWeight}{" "}
                     {product.weightUnit}
                   </li>
                   <li className="capitalize">
@@ -105,6 +116,12 @@ const ProductList = ({ products, setProducts }) => {
                     onClick={() => deleteProduct(product.id)}
                   >
                     <HiOutlineTrash />
+                  </li>
+                  <li
+                    onClick={() => toggleUnit(product)}
+                    className="cursor-pointer"
+                  >
+                    toggle
                   </li>
                 </ul>
               </div>
