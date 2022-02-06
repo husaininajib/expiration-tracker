@@ -3,7 +3,6 @@ import "./App.css"
 import Form from "./components/Form"
 import ProductList from "./components/ProductList"
 import { nanoid } from "nanoid"
-
 import Tools from "./components/Tools"
 import Navbar from "./components/Navbar"
 
@@ -13,54 +12,14 @@ function App() {
     JSON.parse(localStorage.getItem("products")) || []
   )
   const [formData, setFormData] = useState({
+    category: "",
     productName: "",
     imageURL: "",
     expiryDate: "",
     quantity: "",
-    unit: "kg",
     weightPerQuantity: "",
+    weightUnit: "kg",
   })
-
-  // TODO: Update form changes
-  const handleChange = (e) => {
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [e.target.name]: e.target.value,
-      }
-    })
-  }
-
-  //TODO: Submit/push form to products state
-  const submitFormData = (e) => {
-    e.preventDefault()
-    const {
-      productName,
-      imageURL,
-      expiryDate,
-      quantity,
-      unit,
-      weightPerQuantity,
-    } = formData
-
-    if (productName && expiryDate && quantity && unit && weightPerQuantity) {
-      const newFormData = { id: nanoid(), ...formData }
-      setProducts((prevProducts) => {
-        const newProducts = [...prevProducts]
-        newProducts.push(newFormData)
-        return newProducts
-      })
-    } else console.log("please fill in the form")
-
-    setFormData({
-      productName: "",
-      imageURL: "",
-      expiryDate: "",
-      quantity: "",
-      unit: "kg",
-      weightPerQuantity: "",
-    })
-  }
 
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products))
@@ -70,9 +29,10 @@ function App() {
     <>
       <Navbar showForm={showForm} setShowForm={setShowForm} />
       <Form
-        handleChange={handleChange}
-        handleSubmit={submitFormData}
         formData={formData}
+        products={products}
+        setFormData={setFormData}
+        setProducts={setProducts}
         showForm={showForm}
       />
       <main>

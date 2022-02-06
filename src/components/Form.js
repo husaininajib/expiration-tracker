@@ -1,30 +1,94 @@
 import React from "react"
 import Label from "./Label"
 import Input from "./Input"
-import inputData from "./inputData"
 import formStyle from "./formStyle"
 import "./form.css"
-import Select from "./Select"
+import { nanoid } from "nanoid"
 
-const Form = ({ showForm, handleChange, handleSubmit, formData }) => {
+const Form = ({ showForm, setFormData, setProducts, formData }) => {
   const { button, label, input } = formStyle
   const {
+    category,
     productName,
     imageURL,
     expiryDate,
     quantity,
-    unit,
+    weightUnit,
     weightPerQuantity,
   } = formData
+
+  // TODO: Update form changes
+  const handleChange = (e) => {
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [e.target.name]: e.target.value,
+      }
+    })
+  }
+
+  // TODO: update form data
+
+  function updateFormData() {
+    const newFormData = { id: nanoid(), ...formData }
+    setProducts((prevProducts) => {
+      const newProducts = [...prevProducts]
+      newProducts.push(newFormData)
+      return newProducts
+    })
+  }
+
+  // TODO: check if all form input is filled
+  function checkFormData() {
+    if (
+      formData.productName &&
+      formData.expiryDate &&
+      formData.quantity &&
+      formData.weightPerQuantity &&
+      formData.weightUnit
+    ) {
+      updateFormData()
+      resetForm()
+    } else console.log("Fill in the form!!")
+  }
+
+  // TODO: reset input to default data
+  function resetForm() {
+    setFormData({
+      category: "",
+      productName: "",
+      imageURL: "",
+      expiryDate: "",
+      quantity: "",
+      weightPerQuantity: "",
+      weightUnit: "kg",
+    })
+  }
+
+  //TODO: Submit/push form to products state
+  const submitFormData = (e) => {
+    e.preventDefault()
+    checkFormData()
+  }
+
   return (
     <div className={`form-container ${showForm ? "show" : ""}`}>
       <form
         action=""
         className="grid gap-2 border m-0 p-0"
-        onSubmit={handleSubmit}
+        onSubmit={submitFormData}
       >
         <div className="grid">
-          <Label htmlFor="text" title="Product Name" />
+          <Label htmlFor="category" title="Category" />
+          <Input
+            type="text"
+            name="category"
+            value={category}
+            handleChange={handleChange}
+          />
+        </div>
+        <div className="grid">
+          <Label htmlFor="productName" title="Product Name" />
           <Input
             type="text"
             name="productName"
@@ -33,7 +97,7 @@ const Form = ({ showForm, handleChange, handleSubmit, formData }) => {
           />
         </div>
         <div className="grid">
-          <Label htmlFor="url" title="Image URL" />
+          <Label htmlFor="imageURL" title="Image URL" />
           <Input
             type="url"
             name="imageURL"
@@ -42,7 +106,7 @@ const Form = ({ showForm, handleChange, handleSubmit, formData }) => {
           />
         </div>
         <div className="grid">
-          <Label htmlFor="date" title="Expiry Date" />
+          <Label htmlFor="expiryDate" title="Expiry Date" />
           <Input
             type="date"
             name="expiryDate"
@@ -51,7 +115,7 @@ const Form = ({ showForm, handleChange, handleSubmit, formData }) => {
           />
         </div>
         <div className="grid">
-          <Label htmlFor="number" title="Quantity" />
+          <Label htmlFor="quantity" title="Quantity" />
           <Input
             type="number"
             name="quantity"
@@ -59,23 +123,29 @@ const Form = ({ showForm, handleChange, handleSubmit, formData }) => {
             handleChange={handleChange}
           />
         </div>
-        <div className="grid">
-          <Label htmlFor="number" title="Weight" />
-          <Input
-            type="number"
-            name="weightPerQuantity"
-            value={weightPerQuantity}
-            handleChange={handleChange}
-          />
-        </div>
-        {/* <div className="grid">
-          <Label htmlFor="" title="Unit" />
-          <select
-            name="unit"
-            className={input}
-            onChange={handleChange}
-          ></select>
-        </div> */}
+        <article className="flex gap-3">
+          <div className="grid grow">
+            <Label htmlFor="weightPerQuantity" title="Weight" />
+            <Input
+              type="number"
+              name="weightPerQuantity"
+              value={weightPerQuantity}
+              handleChange={handleChange}
+            />
+          </div>
+          <div>
+            <Label htmlFor="weightUnit" title="Unit" />
+            <select
+              name="weightUnit"
+              className={formStyle.input}
+              onChange={handleChange}
+              value={weightUnit}
+            >
+              <option value="kg">Kg</option>
+              <option value="gram">Gram</option>
+            </select>
+          </div>
+        </article>
         <button type="submit" className={button}>
           Submit
         </button>

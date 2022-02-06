@@ -5,30 +5,31 @@ import { GrAddCircle } from "react-icons/gr"
 
 const ProductList = ({ products, setProducts }) => {
   const [count, setCount] = useState(0)
+  const [currentStock, setCurrentStock] = useState({})
 
   const minute = 1000 * 60
   const hours = minute * 60
   const day = hours * 24
 
   function handleAdd(id) {
-    // FIXME: Tried to experiment by creating count state but not working and looks like doesn't make sense
-    // setCount(quantity)
-    // setCount((prev) => prev + 1)
-    // console.log(count)
-    // FIXME: when put if statement, got an error
-    // setProducts((currentProduct) =>
-    //   currentProduct.map((item) => {
-    //     // if (item.id === id) {
-    //     return { ...item, quantity: item.quantity + 1 }
-    //     // }
-    //   })
-    // )
-    //FIXME: this solution updates the state and display but all product element been updated.
-    setProducts((currentProduct) =>
-      currentProduct.map((item) => {
-        return { ...item, quantity: item.quantity + 1 }
-      })
-    )
+    // console.log(quantity)
+    const a = products.filter((item) => {
+      return item.id === id
+    })
+    const newArr = []
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].id === id) {
+        const b = {
+          ...products[i],
+          quantity: parseInt(products[i].quantity) + 1,
+        }
+        newArr.push(b)
+      } else {
+        newArr.push(products[i])
+      }
+    }
+    setProducts(newArr)
+    console.log(newArr)
   }
 
   function handleRemove(id) {
@@ -73,19 +74,16 @@ const ProductList = ({ products, setProducts }) => {
                 </p>
                 <ul className="flex gap-2 font-semibold">
                   <li className="">
-                    {product.quantity} CTN / {totalWeight.toFixed(2)}{" "}
-                    {product.unit}
+                    {product.quantity} PKT / {totalWeight} {product.weightUnit}
                   </li>
                   <li className="capitalize">Stocks left</li>
                 </ul>
                 <ul className="flex gap-2 text-lg items-center mt-3">
-                  <li className="">
+                  <li onClick={() => handleAdd(product.id)}>
                     <GrAddCircle />
                   </li>
-                  <li>
-                    <HiOutlineMinusCircle
-                      onClick={() => handleRemove(product.id)}
-                    />
+                  <li onClick={() => handleRemove(product.id)}>
+                    <HiOutlineMinusCircle />
                   </li>
                   <li
                     className="ml-auto text-red-600"
@@ -104,3 +102,16 @@ const ProductList = ({ products, setProducts }) => {
 }
 
 export default ProductList
+
+// [
+//   {
+//     name: "john.",
+//     age: 30,
+//     favFood: "burger",
+//   },
+//   {
+//     name: "scott",
+//     age: 25,
+//     favFood: "pizza",
+//   },
+// ]
