@@ -21,6 +21,11 @@ function App() {
     weightUnit: "kg",
   })
 
+  // products.sort(
+  // (a, b) =>
+  //   new Date(a.expiryDate).getTime() - new Date(b.expiryDate).getTime()
+  // )
+
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products))
   })
