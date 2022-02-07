@@ -5,6 +5,9 @@ import ProductList from "./components/ProductList"
 import { nanoid } from "nanoid"
 import Tools from "./components/Tools"
 import Navbar from "./components/Navbar"
+import Categories from "./components/Categories"
+import Heading from "./components/Heading"
+import Text from "./components/Text"
 
 function App() {
   const [showForm, setShowForm] = useState(false)
@@ -20,6 +23,7 @@ function App() {
     weightPerQuantity: "",
     weightUnit: "kg",
   })
+  const [category, setCategory] = useState("all")
 
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products))
@@ -37,14 +41,18 @@ function App() {
       />
       <main>
         <section className="px-4 mt-8">
-          <h2 className=" text-2xl font-semibold">Welcome</h2>
-          <p className="text-base mt-1">
-            Track your inventory life and reduce waste and spoilage.
-          </p>
+          <Heading title="Welcome" />
+          <Text />
           <Tools openForm={() => setShowForm(true)} />
         </section>
         <section className="px-4 mt-4">
-          <h2 className="font-semibold text-2xl">My Inventory</h2>
+          <Heading title="My Inventory" />
+          <Categories
+            products={products}
+            setProducts={setProducts}
+            category={category}
+            setCategory={setCategory}
+          />
           <ProductList products={products} setProducts={setProducts} />
         </section>
       </main>
