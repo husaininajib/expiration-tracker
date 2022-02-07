@@ -62,22 +62,6 @@ const ProductItem = ({ product, products, setProducts }) => {
     setProducts(newProducts)
   }
 
-  // FIXME: toggle unit (gram to kg or kg to gram)
-  // const toggleUnit = (unit) => {
-
-  // for (let i = 0; i < products.length; i++) {
-  //   const product = products[i]
-  //   if (unit === product.weightUnit) {
-  //     console.log({
-  //       ...product,
-  //       weightPerQuantity: product.weightPerQuantity * 1000,
-  //       weightUnit: "gram",
-  //     })
-  //   }
-  // }
-
-  // }
-
   const toggleUnit = () => {
     if (weight.weightUnit === "kg") {
       setWeight((prevState) => ({
