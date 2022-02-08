@@ -4,90 +4,13 @@ import Input from "./Input"
 import formStyle from "./formStyle"
 import "./form.css"
 import { nanoid } from "nanoid"
+import useFormData from "./hooks/useFormData"
 
-const Form = ({
-  showForm,
-  setFormData,
-  setProducts,
-  formData,
-  categories,
-  setCategories,
-}) => {
+const Form = ({ showForm, formData, handleChange, submitFormData }) => {
   const { button, label, input } = formStyle
-  const {
-    category,
-    productName,
-    imageURL,
-    expiryDate,
-    quantity,
-    weightUnit,
-    weightPerQuantity,
-  } = formData
-
-  // TODO: Update form changes
-  const handleChange = (e) => {
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [e.target.name]: e.target.value,
-      }
-    })
-  }
-
-  // TODO: update form data
-
-  function updateFormData() {
-    const newFormData = { id: nanoid(), ...formData }
-    setProducts((prevProducts) => {
-      const newProducts = [...prevProducts]
-      newProducts.push(newFormData)
-      return newProducts
-    })
-  }
-
-  // TODO: check if all form input is filled
-  function checkFormData() {
-    if (
-      formData.productName &&
-      formData.expiryDate &&
-      formData.quantity &&
-      formData.weightPerQuantity &&
-      formData.weightUnit
-    ) {
-      updateFormData()
-      resetForm()
-    } else console.log("Fill in the form!!")
-  }
-
-  // TODO: reset input to default data
-  function resetForm() {
-    setFormData({
-      category: "",
-      productName: "",
-      imageURL: "",
-      expiryDate: "",
-      quantity: "",
-      weightPerQuantity: "",
-      weightUnit: "kg",
-    })
-  }
-
-  //TODO: Submit/push form to products state
-  const submitFormData = (e) => {
-    e.preventDefault()
-    checkFormData()
-
-    setCategories((prevState) => {
-      const newCategories = [...prevState, formData.category]
-      const filtered = newCategories.filter((item, index) => {
-        return newCategories.indexOf(item) === index
-      })
-      return filtered
-    })
-  }
   const arr = []
   const a = JSON.parse(localStorage.getItem("products"))
-  console.log(a)
+
   return (
     <div className={`form-container ${showForm ? "show" : ""}`}>
       <form
@@ -100,7 +23,7 @@ const Form = ({
           <Input
             type="text"
             name="category"
-            value={category}
+            value={formData.category}
             handleChange={handleChange}
           />
         </div>
@@ -109,7 +32,7 @@ const Form = ({
           <Input
             type="text"
             name="productName"
-            value={productName}
+            value={formData.productName}
             handleChange={handleChange}
           />
         </div>
@@ -118,7 +41,7 @@ const Form = ({
           <Input
             type="url"
             name="imageURL"
-            value={imageURL}
+            value={formData.imageURL}
             handleChange={handleChange}
           />
         </div>
@@ -127,7 +50,7 @@ const Form = ({
           <Input
             type="date"
             name="expiryDate"
-            value={expiryDate}
+            value={formData.expiryDate}
             handleChange={handleChange}
           />
         </div>
@@ -136,7 +59,7 @@ const Form = ({
           <Input
             type="number"
             name="quantity"
-            value={quantity}
+            value={formData.quantity}
             handleChange={handleChange}
           />
         </div>
@@ -146,7 +69,7 @@ const Form = ({
             <Input
               type="number"
               name="weightPerQuantity"
-              value={weightPerQuantity}
+              value={formData.weightPerQuantity}
               handleChange={handleChange}
             />
           </div>
@@ -156,7 +79,7 @@ const Form = ({
               name="weightUnit"
               className={formStyle.input}
               onChange={handleChange}
-              value={weightUnit}
+              value={formData.weightUnit}
             >
               <option value="kg">Kg</option>
               <option value="gram">Gram</option>
