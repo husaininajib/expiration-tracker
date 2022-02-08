@@ -5,7 +5,14 @@ import formStyle from "./formStyle"
 import "./form.css"
 import { nanoid } from "nanoid"
 
-const Form = ({ showForm, setFormData, setProducts, formData }) => {
+const Form = ({
+  showForm,
+  setFormData,
+  setProducts,
+  formData,
+  categories,
+  setCategories,
+}) => {
   const { button, label, input } = formStyle
   const {
     category,
@@ -69,8 +76,18 @@ const Form = ({ showForm, setFormData, setProducts, formData }) => {
   const submitFormData = (e) => {
     e.preventDefault()
     checkFormData()
-  }
 
+    setCategories((prevState) => {
+      const newCategories = [...prevState, formData.category]
+      const filtered = newCategories.filter((item, index) => {
+        return newCategories.indexOf(item) === index
+      })
+      return filtered
+    })
+  }
+  const arr = []
+  const a = JSON.parse(localStorage.getItem("products"))
+  console.log(a)
   return (
     <div className={`form-container ${showForm ? "show" : ""}`}>
       <form
