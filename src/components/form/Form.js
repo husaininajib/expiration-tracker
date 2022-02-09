@@ -3,14 +3,8 @@ import Label from "./Label"
 import Input from "./Input"
 import formStyle from "./formStyle"
 import "./form.css"
-import { nanoid } from "nanoid"
-import useFormData from "./hooks/useFormData"
 
 const Form = ({ showForm, formData, handleChange, submitFormData }) => {
-  const { button, label, input } = formStyle
-  const arr = []
-  const a = JSON.parse(localStorage.getItem("products"))
-
   return (
     <div className={`form-container ${showForm ? "show" : ""}`}>
       <form
@@ -86,7 +80,7 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
             </select>
           </div>
         </article>
-        <button type="submit" className={button}>
+        <button type="submit" className={formStyle.button}>
           Submit
         </button>
       </form>

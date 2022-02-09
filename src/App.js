@@ -38,8 +38,8 @@ function App() {
           products={products}
           setProducts={setProducts}
           categories={categories}
-          selectedCategory={currentCategory}
-          setSelectedCategory={setCurrentCategory}
+          currentCategory={currentCategory}
+          setCurrentCategory={setCurrentCategory}
         />
       </main>
     </>

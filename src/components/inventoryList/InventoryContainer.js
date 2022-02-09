@@ -12,8 +12,8 @@ const InventoryContainer = (props) => {
         products={props.products}
         setProducts={props.setProducts}
         categories={props.categories}
-        selectedCategory={props.selectedCategory}
-        setSelectedCategory={props.setSelectedCategory}
+        currentCategory={props.currentCategory}
+        setCurrentCategory={props.setCurrentCategory}
       />
     </section>
   )
