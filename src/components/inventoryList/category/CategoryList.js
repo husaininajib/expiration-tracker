@@ -1,12 +1,18 @@
 import React, { useState } from "react"
 
-const CategoryList = ({ categories, setCurrentCategory }) => {
+const CategoryList = ({ categories, currentCategory, setCurrentCategory }) => {
   return (
     <div>
-      <ul className="capitalize flex gap-3 mt-4">
+      <ul className="capitalize flex mt-4">
         {categories.map((item, index) => {
           return (
-            <li key={index} onClick={() => setCurrentCategory(item)}>
+            <li
+              className={`${
+                currentCategory === item ? "bg-purple-700 text-white" : ""
+              } px-2 py-1 cursor-pointer`}
+              key={index}
+              onClick={() => setCurrentCategory(item)}
+            >
               {item}
             </li>
           )

@@ -16,7 +16,6 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState("all")
   const { formData, submitFormData, handleChange } = useFormData(setProducts)
 
-  console.log(latestCategory)
   return (
     <>
       <Navbar showForm={showForm} setShowForm={setShowForm} />

@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+html {
+  min-height: 100%;
+}
 body {
   height: 100%;
   background-color: #f8f9d2;
