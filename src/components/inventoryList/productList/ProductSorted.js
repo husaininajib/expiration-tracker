@@ -9,7 +9,9 @@ const ProductSorted = ({ product, handleAdd, handleRemove, deleteProduct }) => {
     <article className="border w-full mt-7">
       <div className="flex gap-4">
         <img
-          src={product.imageURL}
+          src={
+            product.imageURL ? product.imageURL : "https://tinyurl.com/3ctc7svd"
+          }
           alt="product-image"
           className="w-20 h-20 rounded-lg"
         />
@@ -45,7 +47,7 @@ const ProductSorted = ({ product, handleAdd, handleRemove, deleteProduct }) => {
               <HiOutlineTrash />
             </li>
             <li onClick={() => toggleUnit()} className="cursor-pointer">
-              toggle
+              {weight.unit === "kg" ? "KG" : "GRAM"}
             </li>
           </ul>
         </div>

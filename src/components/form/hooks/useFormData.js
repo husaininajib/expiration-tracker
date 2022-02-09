@@ -11,6 +11,8 @@ const useFormData = (setProducts) => {
     quantity: "",
     weightPerQuantity: "",
     weightUnit: "kg",
+    dailyUsage: "",
+    leadTime: "",
   })
 
   // ALL FORM FUNCTIONS
@@ -60,6 +62,8 @@ const useFormData = (setProducts) => {
       quantity: "",
       weightPerQuantity: "",
       weightUnit: "kg",
+      dailyUsage: "",
+      leadTime: "",
     })
   }
 
@@ -67,14 +71,6 @@ const useFormData = (setProducts) => {
   const submitFormData = (e) => {
     e.preventDefault()
     checkFormData()
-
-    // setCategories((prevState) => {
-    //   const newCategories = [...prevState, formData.category]
-    //   const filtered = newCategories.filter((item, index) => {
-    //     return newCategories.indexOf(item) === index
-    //   })
-    //   return filtered
-    // })
   }
 
   return {

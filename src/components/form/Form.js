@@ -80,6 +80,24 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
             </select>
           </div>
         </article>
+        <div className="grid">
+          <Label htmlFor="dailyUsage" title="Daily Usage" />
+          <Input
+            type="number"
+            name="dailyUsage"
+            value={formData.dailyUsage}
+            handleChange={handleChange}
+          />
+        </div>
+        <div className="grid">
+          <Label htmlFor="leadTime" title="Lead Time" />
+          <Input
+            type="number"
+            name="leadTime"
+            value={formData.leadTime}
+            handleChange={handleChange}
+          />
+        </div>
         <button type="submit" className={formStyle.button}>
           Submit
         </button>
