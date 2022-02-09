@@ -1,23 +1,10 @@
 import React from "react"
 import { HiOutlineMinusCircle, HiOutlineTrash } from "react-icons/hi"
 import { GrAddCircle } from "react-icons/gr"
+import useCalculation from "./useCalculation"
 
-const ProductSorted = ({
-  product,
-  handleAdd,
-  handleRemove,
-  deleteProduct,
-  toggleUnit,
-}) => {
-  const minute = 1000 * 60
-  const hours = minute * 60
-  const day = hours * 24
-
-  const totalWeight = product.quantity * product.weightPerQuantity
-  const expiryDate = new Date(product.expiryDate).getTime() / day
-  const currentDate = new Date().getTime() / day
-  const countdown = Math.ceil(expiryDate - currentDate)
-
+const ProductSorted = ({ product, handleAdd, handleRemove, deleteProduct }) => {
+  const { countdown, weight, toggleUnit } = useCalculation(product)
   return (
     <article className="border w-full mt-7">
       <div className="flex gap-4">
@@ -37,8 +24,8 @@ const ProductSorted = ({
           <ul className="flex gap-2 font-semibold">
             <li className="">
               {product.quantity} PKT /
-              {totalWeight % 1 !== 0 ? totalWeight.toFixed(2) : totalWeight}{" "}
-              {product.weightUnit}
+              {weight.total % 1 !== 0 ? weight.total.toFixed(2) : weight.total}{" "}
+              {weight.unit}
             </li>
             <li className="capitalize">
               {product.quantity === 1 ? "Stock Left" : "Stocks Left"}
@@ -57,10 +44,7 @@ const ProductSorted = ({
             >
               <HiOutlineTrash />
             </li>
-            <li
-              onClick={() => toggleUnit(product.id)}
-              className="cursor-pointer"
-            >
+            <li onClick={() => toggleUnit()} className="cursor-pointer">
               toggle
             </li>
           </ul>

@@ -3,13 +3,7 @@ import ProductItem from "./ProductItem"
 import ProductSorted from "./ProductSorted"
 import useProductsFeatures from "../hooks/useProductsFeatures"
 
-const ProductList = ({
-  products,
-  setProducts,
-  categories,
-  currentCategory,
-  setSelectedCategory,
-}) => {
+const ProductList = ({ products, setProducts, currentCategory }) => {
   const {
     handleAdd,
     handleRemove,
@@ -28,7 +22,7 @@ const ProductList = ({
             handleAdd={handleAdd}
             handleRemove={handleRemove}
             deleteProduct={deleteProduct}
-            toggleUnit={toggleUnit}
+            // toggleUnit={toggleUnit}
           />
         )
       })}
