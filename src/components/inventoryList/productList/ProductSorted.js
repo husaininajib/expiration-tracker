@@ -4,7 +4,7 @@ import { GrAddCircle } from "react-icons/gr"
 import useCalculation from "./useCalculation"
 
 const ProductSorted = ({ product, handleAdd, handleRemove, deleteProduct }) => {
-  const { countdown, weight, toggleUnit } = useCalculation(product)
+  const { countdown, weight, totalWeight, toggleUnit } = useCalculation(product)
   return (
     <article className="border w-full mt-7">
       <div className="flex gap-4">
@@ -24,7 +24,7 @@ const ProductSorted = ({ product, handleAdd, handleRemove, deleteProduct }) => {
           <ul className="flex gap-2 font-semibold">
             <li className="">
               {product.quantity} PKT /
-              {weight.total % 1 !== 0 ? weight.total.toFixed(2) : weight.total}{" "}
+              {totalWeight % 1 !== 0 ? totalWeight.toFixed(2) : totalWeight}{" "}
               {weight.unit}
             </li>
             <li className="capitalize">

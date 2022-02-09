@@ -1,16 +1,10 @@
-import React, { useState } from "react"
-import ProductItem from "./ProductItem"
+import React from "react"
 import ProductSorted from "./ProductSorted"
 import useProductsFeatures from "../hooks/useProductsFeatures"
 
 const ProductList = ({ products, setProducts, currentCategory }) => {
-  const {
-    handleAdd,
-    handleRemove,
-    deleteProduct,
-    toggleUnit,
-    filteredProducts,
-  } = useProductsFeatures(products, setProducts, currentCategory)
+  const { handleAdd, handleRemove, deleteProduct, filteredProducts } =
+    useProductsFeatures(products, setProducts, currentCategory)
 
   return (
     <>
@@ -22,7 +16,6 @@ const ProductList = ({ products, setProducts, currentCategory }) => {
             handleAdd={handleAdd}
             handleRemove={handleRemove}
             deleteProduct={deleteProduct}
-            // toggleUnit={toggleUnit}
           />
         )
       })}
