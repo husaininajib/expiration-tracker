@@ -7,7 +7,11 @@ const InventoryContainer = (props) => {
   return (
     <section className="px-4 mt-4">
       <Heading title="My Inventory" />
-      <CategoryList categories={props.categories} />
+      <CategoryList
+        categories={props.categories}
+        currentCategory={props.currentCategory}
+        setCurrentCategory={props.setCurrentCategory}
+      />
       <ProductList
         products={props.products}
         setProducts={props.setProducts}

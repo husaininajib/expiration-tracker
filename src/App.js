@@ -7,14 +7,16 @@ import InventoryContainer from "./components/inventoryList/InventoryContainer"
 import useLocalStorage from "./components/form/hooks/useLocalStorage"
 import useFormData from "./components/form/hooks/useFormData"
 import useDisplayForm from "./components/form/hooks/useDisplayForm"
+import useCategories from "./components/inventoryList/hooks/useCategories"
 
 function App() {
   const { showForm, setShowForm, toolsOption } = useDisplayForm()
-  const [categories, setCategories] = useState(["all"])
-  const [currentCategory, setCurrentCategory] = useState("all")
   const { products, setProducts } = useLocalStorage()
+  const { categories, setCategories, latestCategory } = useCategories(products)
+  const [currentCategory, setCurrentCategory] = useState("all")
   const { formData, submitFormData, handleChange } = useFormData(setProducts)
 
+  console.log(latestCategory)
   return (
     <>
       <Navbar showForm={showForm} setShowForm={setShowForm} />
@@ -37,7 +39,7 @@ function App() {
         <InventoryContainer
           products={products}
           setProducts={setProducts}
-          categories={categories}
+          categories={latestCategory}
           currentCategory={currentCategory}
           setCurrentCategory={setCurrentCategory}
         />

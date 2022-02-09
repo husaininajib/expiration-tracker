@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 
-const CategoryList = ({ categories, handleSort }) => {
+const CategoryList = ({ categories, setCurrentCategory }) => {
   return (
     <div>
-      <ul className="capitalize">
+      <ul className="capitalize flex gap-3 mt-4">
         {categories.map((item, index) => {
           return (
-            <li key={index} onClick={() => handleSort(item)}>
+            <li key={index} onClick={() => setCurrentCategory(item)}>
               {item}
             </li>
           )
