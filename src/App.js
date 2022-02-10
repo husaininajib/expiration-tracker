@@ -37,6 +37,7 @@ function App() {
           showForm={showForm}
           setShowForm={setShowForm}
           toolsOption={toolsOption}
+          reorderStock={newReorder}
         />
         <InventoryContainer
           products={products}
