@@ -9,6 +9,7 @@ import useFormData from "./components/form/hooks/useFormData"
 import useDisplayForm from "./components/form/hooks/useDisplayForm"
 import useCategories from "./components/inventoryList/hooks/useCategories"
 import useReorderPoint from "./components/inventoryList/hooks/useReorderPoint"
+import ReorderList from "./components/reorder/ReorderList"
 
 function App() {
   const { showForm, setShowForm, toolsOption } = useDisplayForm()
@@ -16,9 +17,8 @@ function App() {
   const { categories, setCategories, latestCategory } = useCategories(products)
   const [currentCategory, setCurrentCategory] = useState("all")
   const { formData, submitFormData, handleChange } = useFormData(setProducts)
-  const { reorderList } = useReorderPoint(products)
+  const { newReorder } = useReorderPoint(products)
 
-  console.log(reorderList)
   return (
     <>
       <Navbar showForm={showForm} setShowForm={setShowForm} />
@@ -46,6 +46,7 @@ function App() {
           setCurrentCategory={setCurrentCategory}
         />
       </main>
+      <ReorderList reorderList={newReorder} />
     </>
   )
 }
