@@ -2,10 +2,10 @@ import React, { useState } from "react"
 import { nanoid } from "nanoid"
 
 const useFormData = (setProducts) => {
-  // const { products, setProducts } = useLocalStorage()
   const [formData, setFormData] = useState({
     category: "",
     productName: "",
+    productCode: "",
     imageURL: "",
     expiryDate: "",
     quantity: "",
@@ -57,6 +57,7 @@ const useFormData = (setProducts) => {
     setFormData({
       category: "",
       productName: "",
+      productCode: "",
       imageURL: "",
       expiryDate: "",
       quantity: "",

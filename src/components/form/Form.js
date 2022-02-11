@@ -31,6 +31,15 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
           />
         </div>
         <div className="grid">
+          <Label htmlFor="productCode" title="Product Code" />
+          <Input
+            type="text"
+            name="productCode"
+            value={formData.productCode}
+            handleChange={handleChange}
+          />
+        </div>
+        <div className="grid">
           <Label htmlFor="imageURL" title="Image URL" />
           <Input
             type="url"
