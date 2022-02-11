@@ -1,11 +1,7 @@
 import React from "react"
 
 const Text = (props) => {
-  return (
-    <p className="text-base mt-1">
-      Track your inventory life and reduce waste and spoilage.
-    </p>
-  )
+  return <span className={props.classStyle}>{props.content}</span>
 }
 
 export default Text

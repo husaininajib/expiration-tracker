@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 
-const useLocalStorage = () => {
+const useProducts = () => {
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products")) || []
   )
@@ -15,4 +15,4 @@ const useLocalStorage = () => {
   }
 }
 
-export default useLocalStorage
+export default useProducts

@@ -1,6 +1,6 @@
 import React from "react"
 
-const ListContainer = (props) => {
+const ContentContainer = (props) => {
   return (
     <ul className={props.classStyle}>
       {props.items.map((item, index) => {
@@ -13,4 +13,4 @@ const ListContainer = (props) => {
   )
 }
 
-export default ListContainer
+export default ContentContainer

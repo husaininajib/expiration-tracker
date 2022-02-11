@@ -4,18 +4,17 @@ import Form from "./components/form/Form"
 import Navbar from "./components/navbar/Navbar"
 import HeroContainer from "./components/hero/HeroContainer"
 import InventoryContainer from "./components/inventoryList/InventoryContainer"
-import useLocalStorage from "./components/form/hooks/useLocalStorage"
-import useFormData from "./components/form/hooks/useFormData"
-import useDisplayForm from "./components/form/hooks/useDisplayForm"
-import useCategories from "./components/inventoryList/hooks/useCategories"
-import useReorderPoint from "./components/inventoryList/hooks/useReorderPoint"
+import useProducts from "./components/custom-hooks/useProducts"
+import useFormData from "./components/custom-hooks/useFormData"
+import useDisplayForm from "./components/custom-hooks/useDisplayForm"
+import useCategories from "./components/custom-hooks/useCategories"
+import useReorderPoint from "./components/custom-hooks/useReorderPoint"
 import ReorderList from "./components/reorder/ReorderList"
-import ProductItem from "./components/inventoryList/productList/ProductItem"
 
 function App() {
   const [showReorderList, setShowReorderList] = useState(false)
   const { showForm, setShowForm, toolsOption } = useDisplayForm()
-  const { products, setProducts } = useLocalStorage()
+  const { products, setProducts } = useProducts()
   const { categories, setCategories, latestCategory } = useCategories(products)
   const [currentCategory, setCurrentCategory] = useState("all")
   const { formData, submitFormData, handleChange } = useFormData(setProducts)
@@ -56,8 +55,6 @@ function App() {
           setCurrentCategory={setCurrentCategory}
         />
       </main>
-      {/* <ReorderList reorderList={newReorder} /> */}
-      {/* <ProductItem /> */}
     </>
   )
 }

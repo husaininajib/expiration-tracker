@@ -1,6 +1,7 @@
 import React from "react"
 import { HiViewGrid } from "react-icons/hi"
 import { BsFillMoonStarsFill } from "react-icons/bs"
+import LinkTag from "../LinkTag"
 
 const Navbar = ({ showForm, setShowForm }) => {
   return (
@@ -9,16 +10,12 @@ const Navbar = ({ showForm, setShowForm }) => {
         className="flex items-center justify-between h-14 text-white text-lg px-4"
         style={{ backgroundColor: "#7A3BED" }}
       >
-        <div
-          className="text-2xl cursor-pointer"
+        <HiViewGrid
           onClick={() => setShowForm(!showForm)}
-        >
-          <HiViewGrid />
-        </div>
-        <a href="">Inventory Tracker</a>
-        <div className="text-lg cursor-pointer">
-          <BsFillMoonStarsFill />
-        </div>
+          className="text-2xl cursor-pointer"
+        />
+        <LinkTag link="" title="Inventory Tracker" />
+        <BsFillMoonStarsFill className="text-lg cursor-pointer" />
       </nav>
     </header>
   )

@@ -1,7 +1,6 @@
 import React from "react"
-import ProductSorted from "./ProductSorted"
-import useProductsFeatures from "../hooks/useProductsFeatures"
 import ProductItem from "./ProductItem"
+import useProductsFeatures from "../../custom-hooks/useProductsFeatures"
 
 const ProductContainer = ({ products, setProducts, currentCategory }) => {
   const { handleAdd, handleRemove, deleteProduct, filteredProducts } =

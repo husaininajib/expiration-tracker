@@ -1,5 +1,5 @@
 import React from "react"
-import ListContainer from "./ListContainer"
+import ContentContainer from "./ContentContainer"
 
 const SectionContainer = () => {
   return (
@@ -10,11 +10,11 @@ const SectionContainer = () => {
         className="w-20 h-20 rounded-md"
       />
       <div className="w-full">
-        <ListContainer
+        <ContentContainer
           items={["banana", "fruit"]}
           classStyle={"flex justify-between"}
         />
-        <ListContainer items={["Expired in 3 days", "03/02/2022"]} />
+        <ContentContainer items={["Expired in 3 days", "03/02/2022"]} />
       </div>
     </article>
   )
