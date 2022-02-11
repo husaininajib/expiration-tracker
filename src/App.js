@@ -13,6 +13,7 @@ import ReorderList from "./components/reorder/ReorderList"
 import ProductItem from "./components/inventoryList/productList/ProductItem"
 
 function App() {
+  const [showReorderList, setShowReorderList] = useState(false)
   const { showForm, setShowForm, toolsOption } = useDisplayForm()
   const { products, setProducts } = useLocalStorage()
   const { categories, setCategories, latestCategory } = useCategories(products)
@@ -33,12 +34,19 @@ function App() {
         categories={categories}
         setCategories={setCategories}
       />
+      <ReorderList
+        showReorderList={showReorderList}
+        setShowReorderList={setShowReorderList}
+        reorderList={newReorder}
+      />
       <main>
         <HeroContainer
           showForm={showForm}
           setShowForm={setShowForm}
           toolsOption={toolsOption}
           reorderStock={newReorder}
+          showReorderList={showReorderList}
+          setShowReorderList={setShowReorderList}
         />
         <InventoryContainer
           products={products}

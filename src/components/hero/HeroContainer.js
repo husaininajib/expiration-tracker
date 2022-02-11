@@ -3,7 +3,7 @@ import Heading from "../Heading"
 import Text from "../Text"
 import Tools from "./Tools"
 
-const HeroContainer = ({ reorderStock, setShowForm }) => {
+const HeroContainer = ({ reorderStock, setShowForm, setShowReorderList }) => {
   return (
     <section className="px-4 mt-8">
       <Heading title="Welcome" />
@@ -23,7 +23,7 @@ const HeroContainer = ({ reorderStock, setShowForm }) => {
         </article>
         <article
           className="card grid gap-2 place-items-center w-40 py-8 rounded-xl border cursor-pointer"
-          // onClick={() => openForm(true)}
+          onClick={() => setShowReorderList(true)}
         >
           <div className="text-2xl">
             <i className="fas fa-exclamation-triangle"></i>
