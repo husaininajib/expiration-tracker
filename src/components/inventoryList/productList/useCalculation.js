@@ -14,6 +14,8 @@ const useCalculation = (product) => {
   const currentDate = new Date().getTime() / day
   const countdown = Math.ceil(expiryDate - currentDate)
 
+  const reorderPoint = product.dailyUsage * product.leadTime
+
   const toggleUnit = () => {
     if (weight.unit === "kg") {
       setWeight((prevState) => {
@@ -34,7 +36,7 @@ const useCalculation = (product) => {
     }
   }
 
-  return { countdown, weight, totalWeight, toggleUnit }
+  return { countdown, weight, totalWeight, reorderPoint, toggleUnit }
 }
 
 export default useCalculation

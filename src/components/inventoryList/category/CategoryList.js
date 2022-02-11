@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 const CategoryList = ({ categories, currentCategory, setCurrentCategory }) => {
   return (
-    <div>
+    <div className="mb-7">
       <ul className="capitalize flex mt-4">
         {categories.map((item, index) => {
           return (

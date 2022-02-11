@@ -10,6 +10,7 @@ import useDisplayForm from "./components/form/hooks/useDisplayForm"
 import useCategories from "./components/inventoryList/hooks/useCategories"
 import useReorderPoint from "./components/inventoryList/hooks/useReorderPoint"
 import ReorderList from "./components/reorder/ReorderList"
+import ProductItem from "./components/inventoryList/productList/ProductItem"
 
 function App() {
   const { showForm, setShowForm, toolsOption } = useDisplayForm()
@@ -47,7 +48,8 @@ function App() {
           setCurrentCategory={setCurrentCategory}
         />
       </main>
-      <ReorderList reorderList={newReorder} />
+      {/* <ReorderList reorderList={newReorder} /> */}
+      {/* <ProductItem /> */}
     </>
   )
 }

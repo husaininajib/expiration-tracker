@@ -1,129 +1,97 @@
-import React, { useState } from "react"
-import { GrAddCircle } from "react-icons/gr"
-import { HiOutlineMinusCircle, HiOutlineTrash } from "react-icons/hi"
+import React from "react"
+import ListContainer from "./ListContainer"
+import Container from "./Container"
+import useCalculation from "./useCalculation"
 
-const ProductItem = ({ product, products, setProducts }) => {
-  const [weight, setWeight] = useState({
-    weightPerUnit: parseFloat(product.weightPerQuantity),
-    weightUnit: product.weightUnit,
-  })
-
-  const minute = 1000 * 60
-  const hours = minute * 60
-  const day = hours * 24
-  const totalWeight = parseInt(product.quantity) * weight.weightPerUnit
-  const expiryDate = new Date(product.expiryDate).getTime() / day
-  const currentDate = new Date().getTime() / day
-  const countdown = Math.ceil(expiryDate - currentDate)
-
-  console.log(weight.weightPerUnit)
-
-  // TODO: Add quantity
-  function handleAdd(id) {
-    const newProducts = []
-    for (let i = 0; i < products.length; i++) {
-      const product = products[i]
-      if (product.id === id) {
-        const b = {
-          ...product,
-          quantity: parseInt(product.quantity) + 1,
-        }
-        newProducts.push(b)
-      } else {
-        newProducts.push(product)
-      }
-    }
-    setProducts(newProducts)
-  }
-
-  // TODO: remove quantity
-  function handleRemove(id) {
-    const newProducts = []
-    for (let i = 0; i < products.length; i++) {
-      const product = products[i]
-      if (product.id === id && product.quantity > 0) {
-        const a = {
-          ...products[i],
-          quantity: parseInt(product.quantity) - 1,
-        }
-        newProducts.push(a)
-      } else {
-        newProducts.push(product)
-      }
-    }
-    setProducts(newProducts)
-  }
-
-  // TODO: Delete product
-  const deleteProduct = (id) => {
-    const newProducts = products.filter((product) => {
-      return id !== product.id
-    })
-    setProducts(newProducts)
-  }
-
-  const toggleUnit = () => {
-    if (weight.weightUnit === "kg") {
-      setWeight((prevState) => ({
-        weightPerUnit: prevState.weightPerUnit * 1000,
-        weightUnit: "gram",
-      }))
-    } else {
-      setWeight((prevState) => ({
-        weightPerUnit: prevState.weightPerUnit / 1000,
-        weightUnit: "kg",
-      }))
-    }
-  }
+const ProductItem = ({ product, handleAdd, handleRemove, deleteProduct }) => {
+  const { countdown, weight, totalWeight, reorderPoint, toggleUnit } =
+    useCalculation(product)
 
   return (
-    <article className="border w-full mt-7">
-      <div className="flex gap-4">
+    <section className="w-72 mb-6">
+      <article className="flex gap-4 pr-4">
         <img
-          src={product.imageURL}
-          alt="product-image"
-          className="w-20 h-20 rounded-lg"
+          src={
+            product.imageURL ? product.imageURL : "https://tinyurl.com/3ctc7svd"
+          }
+          alt="product-img"
+          className="w-20 h-20 rounded-md"
         />
-        <div>
-          <div className="flex justify-between">
-            <h2 className="uppercase font-bold">{product.productName}</h2>
-            <span className="capitalize">{product.category}</span>
-          </div>
-          <p className="font-semibold">
-            {countdown} days till expired ({product.expiryDate})
-          </p>
-          <ul className="flex gap-2 font-semibold">
-            <li className="">
-              {product.quantity} PKT /
-              {totalWeight % 1 !== 0 ? totalWeight.toFixed(2) : totalWeight}{" "}
-              {weight.weightUnit}
-              {/* {gram ? "gram" : "kg"} */}
-            </li>
-            <li className="capitalize">
-              {product.quantity === 1 ? "Stock Left" : "Stocks Left"}
+        <div className="w-full">
+          <ul className="flex justify-between items-center capitalize font-semibold text-lg">
+            <li>{product.productName}</li>
+            <li className="font-medium text-sm bg-purple-500 px-2 rounded-md text-white">
+              {product.category}
             </li>
           </ul>
-          <ul className="flex gap-2 text-lg items-center mt-3">
-            <li onClick={() => handleAdd(product.id)}>
-              <GrAddCircle />
+          <ul className="font-medium">
+            <li>
+              Expired in {countdown} {countdown === 1 ? "day" : "days"}
             </li>
-            <li onClick={() => handleRemove(product.id)}>
-              <HiOutlineMinusCircle />
-            </li>
-            <li
-              className="ml-auto text-red-600"
-              onClick={() => deleteProduct(product.id)}
-            >
-              <HiOutlineTrash />
-            </li>
-            <li onClick={() => toggleUnit()} className="cursor-pointer">
-              toggle
-            </li>
+            <li className="font-normal text-sm mt-1">{product.expiryDate}</li>
           </ul>
         </div>
-      </div>
-    </article>
+      </article>
+      <article className="flex justify-between mt-3">
+        <ul>
+          <li className="font-medium">
+            {product.quantity} PCS |{" "}
+            {totalWeight % 1 !== 0 ? totalWeight.toFixed(2) : totalWeight}{" "}
+            {weight.unit}
+          </li>
+          <li className="text-sm mt-1">In Stock</li>
+        </ul>
+        <ul className="w-24">
+          <li className="font-medium">{reorderPoint} PCS</li>
+          <li className="text-sm mt-1">Stocks level to restock</li>
+        </ul>
+      </article>
+      <ul className="flex justify-center items-center gap-3 mt-3 text-lg">
+        <li className="text-purple-700" onClick={() => toggleUnit()}>
+          <i className="fas fa-exchange-alt"></i>
+        </li>
+        <li className="text-green-500" onClick={() => handleAdd(product.id)}>
+          <i className="fas fa-plus-circle"></i>
+        </li>
+        <li
+          className="text-purple-700"
+          onClick={() => handleRemove(product.id)}
+        >
+          <i className="fas fa-minus-circle"></i>
+        </li>
+        <li className="text-red-500" onClick={() => deleteProduct(product.id)}>
+          <i className="fas fa-trash"></i>
+        </li>
+      </ul>
+    </section>
   )
 }
 
 export default ProductItem
+
+// return (
+//   <section className="w-72">
+//     <article className="flex gap-4 pr-4">
+//       <img
+//         src="https://tinyurl.com/5jprfz4b"
+//         alt=""
+//         className="w-20 h-20 rounded-md"
+//       />
+//       <div className="w-full">
+//         <ListContainer
+//           items={["banana", "fruit"]}
+//           classStyle={"flex justify-between capitalize font-semibold text-lg"}
+//         />
+//         <ListContainer items={["Expired in 3 days", "03/02/2022"]} />
+//       </div>
+//     </article>
+//     <article className="flex justify-between">
+//       <ListContainer items={["20 PCS | 20 KG", "In Stock"]} />
+//       <ListContainer items={["30 PCS", "Stocks level to restock"]} />
+//     </article>
+//     <ListContainer
+//       items={["add", "remove", "delete"]}
+//       classStyle="flex justify-between"
+//     />
+//   </section>
+// )

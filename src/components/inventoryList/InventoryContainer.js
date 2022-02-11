@@ -1,7 +1,7 @@
 import React from "react"
 import Heading from "../Heading"
 import CategoryList from "./category/CategoryList"
-import ProductList from "./productList/ProductList"
+import ProductContainer from "./productList/ProductContainer"
 
 const InventoryContainer = (props) => {
   return (
@@ -12,7 +12,7 @@ const InventoryContainer = (props) => {
         currentCategory={props.currentCategory}
         setCurrentCategory={props.setCurrentCategory}
       />
-      <ProductList
+      <ProductContainer
         products={props.products}
         setProducts={props.setProducts}
         categories={props.categories}

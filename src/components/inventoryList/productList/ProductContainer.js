@@ -1,16 +1,16 @@
 import React from "react"
 import ProductSorted from "./ProductSorted"
 import useProductsFeatures from "../hooks/useProductsFeatures"
+import ProductItem from "./ProductItem"
 
-const ProductList = ({ products, setProducts, currentCategory }) => {
+const ProductContainer = ({ products, setProducts, currentCategory }) => {
   const { handleAdd, handleRemove, deleteProduct, filteredProducts } =
     useProductsFeatures(products, setProducts, currentCategory)
-
   return (
     <>
       {filteredProducts.map((product) => {
         return (
-          <ProductSorted
+          <ProductItem
             key={product.id}
             product={product}
             handleAdd={handleAdd}
@@ -23,4 +23,4 @@ const ProductList = ({ products, setProducts, currentCategory }) => {
   )
 }
 
-export default ProductList
+export default ProductContainer
