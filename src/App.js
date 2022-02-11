@@ -20,6 +20,17 @@ function App() {
   const { formData, submitFormData, handleChange } = useFormData(setProducts)
   const { newReorder } = useReorderPoint(products)
 
+  const arr = []
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i]
+
+    arr.push(product.productCode)
+  }
+  const b = products.filter((item) => {
+    return item.productCode
+  })
+  // console.log(arr)
+  console.log(b)
   return (
     <>
       <Navbar showForm={showForm} setShowForm={setShowForm} />
