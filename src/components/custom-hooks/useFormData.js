@@ -30,7 +30,14 @@ const useFormData = (setProducts) => {
   // TODO: update form data
 
   function updateFormData() {
-    const newFormData = { id: nanoid(), ...formData }
+    const newFormData = {
+      id: nanoid(),
+      ...formData,
+      quantity: +formData.quantity,
+      weightPerQuantity: +formData.weightPerQuantity,
+      dailyUsage: +formData.dailyUsage,
+      leadTime: +formData.leadTime,
+    }
     setProducts((prevProducts) => {
       const newProducts = [...prevProducts]
       newProducts.push(newFormData)

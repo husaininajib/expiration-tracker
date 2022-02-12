@@ -20,17 +20,31 @@ function App() {
   const { formData, submitFormData, handleChange } = useFormData(setProducts)
   const { newReorder } = useReorderPoint(products)
 
-  const arr = []
-  for (let i = 0; i < products.length; i++) {
-    const product = products[i]
+  const items = [
+    {
+      category: "fruit",
+      productName: "mango",
+      productCode: "a1",
+      imageURL: "https://tinyurl.com/267jtwwh",
+      data: [
+        {
+          weightPerQuantity: 1,
+          weightUnit: "kg",
+          quantity: 50,
+          expiryDate: "20/12/2022",
+        },
+        {
+          weightPerQuantity: 1.5,
+          weightUnit: "kg",
+          quantity: 20,
+          expiryDate: "25/12/2022",
+        },
+      ],
+      dailyUsage: 10,
+      leadTime: 2,
+    },
+  ]
 
-    arr.push(product.productCode)
-  }
-  const b = products.filter((item) => {
-    return item.productCode
-  })
-  // console.log(arr)
-  console.log(b)
   return (
     <>
       <Navbar showForm={showForm} setShowForm={setShowForm} />
@@ -66,8 +80,42 @@ function App() {
           setCurrentCategory={setCurrentCategory}
         />
       </main>
+      {items.map((item) => {
+        return (
+          <div>
+            <h2>{item.productName}</h2>
+            {item.data.map((item) => {
+              return (
+                <ul>
+                  {item.expiryDate} | {item.quantity}
+                </ul>
+              )
+            })}
+          </div>
+        )
+      })}
     </>
   )
 }
 
 export default App
+
+// dropdown
+// group them together but still under mango
+// tool tip for exhange unit
+//
+
+// const arr = []
+// for (let i = 0; i < products.length; i++) {
+//   const product = products[i]
+
+//   arr.push(product.productCode)
+// }
+// const b = products.filter((item) => {
+//   return item.productCode
+// })
+// // console.log(arr)
+// console.log(b)
+
+// TODO: implement this logic
+// if products got item that have the same stock code, combine it.
