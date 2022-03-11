@@ -14,7 +14,8 @@ const useCalculation = (product) => {
   const currentDate = new Date().getTime() / day
   const countdown = Math.ceil(expiryDate - currentDate)
 
-  const reorderPoint = product.dailyUsage * product.leadTime
+  const reorderPoint =
+    product.averageSalesPerDay * product.daysToReceiveNewStock
 
   const toggleUnit = () => {
     if (weight.unit === "kg") {

@@ -1,7 +1,7 @@
 import React from "react"
-import Heading from "../Heading"
-import CategoryList from "./category/CategoryList"
-import ProductContainer from "./productList/ProductContainer"
+import Heading from "../Heading/Heading"
+import CategoryList from "../CategoryList/CategoryList"
+import ProductContainer from "../ProductContainer/ProductContainer"
 
 const InventoryContainer = (props) => {
   return (

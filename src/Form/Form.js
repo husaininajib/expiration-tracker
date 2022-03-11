@@ -1,8 +1,10 @@
 import React from "react"
-import Label from "./Label"
-import Input from "./Input"
-import formStyle from "./formStyle"
+import Label from "../components/Label/Label"
+import Input from "../Input/Input"
+import formStyle from "./style/formStyle"
+import optionData from "../components/Option/data/optionData"
 import "./form.css"
+import Option from "../components/Option/Option"
 
 const Form = ({ showForm, formData, handleChange, submitFormData }) => {
   return (
@@ -14,12 +16,22 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
       >
         <div className="grid">
           <Label htmlFor="category" title="Category" />
-          <Input
+          {/* <Input
             type="text"
             name="category"
             value={formData.category}
             handleChange={handleChange}
-          />
+          /> */}
+          <select
+            name="category"
+            className={formStyle.input}
+            onChange={handleChange}
+            value={formData.category}
+          >
+            {optionData.map((item, index) => {
+              return <Option key={index} value={item} />
+            })}
+          </select>
         </div>
         <div className="grid">
           <Label htmlFor="productName" title="Product Name" />
@@ -30,7 +42,7 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
             handleChange={handleChange}
           />
         </div>
-        <div className="grid">
+        {/* <div className="grid">
           <Label htmlFor="productCode" title="Product Code" />
           <Input
             type="text"
@@ -38,7 +50,7 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
             value={formData.productCode}
             handleChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className="grid">
           <Label htmlFor="imageURL" title="Image URL" />
           <Input
@@ -90,23 +102,30 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
           </div>
         </article>
         <div className="grid">
-          <Label htmlFor="dailyUsage" title="Daily Usage" />
+          <Label
+            htmlFor="averageSalesPerDay"
+            title="Average Product sold Per Day"
+          />
           <Input
             type="number"
-            name="dailyUsage"
-            value={formData.dailyUsage}
+            name="averageSalesPerDay"
+            value={formData.averageSalesPerDay}
             handleChange={handleChange}
           />
         </div>
         <div className="grid">
-          <Label htmlFor="leadTime" title="Lead Time" />
+          <Label
+            htmlFor="daysToReceiveNewStock"
+            title="Days To Receive New Stock"
+          />
           <Input
             type="number"
-            name="leadTime"
-            value={formData.leadTime}
+            name="daysToReceiveNewStock"
+            value={formData.daysToReceiveNewStock}
             handleChange={handleChange}
           />
         </div>
+
         <button type="submit" className={formStyle.button}>
           Submit
         </button>

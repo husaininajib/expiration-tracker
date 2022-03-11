@@ -1,15 +1,16 @@
 import React from "react"
-import ListContainer from "./ContentContainer" // this one tried to make a component
-import Container from "./Container"
-import useCalculation from "./useCalculation"
+import ButtonEdit from "../ButtonEdit/ButtonEdit"
+// import ListContainer from "./ContentContainer" // this one tried to make a component
+// import Container from "./Container"
+import useCalculation from "../custom-hooks/useCalculation"
 
 const ProductItem = ({ product, handleAdd, handleRemove, deleteProduct }) => {
   const { countdown, weight, totalWeight, reorderPoint, toggleUnit } =
     useCalculation(product)
 
   return (
-    <section className="w-72 mb-6">
-      <article className="flex gap-4 pr-4">
+    <section className="w-full mb-6 bg-purple-200 p-4 rounded-lg">
+      <article className="flex gap-4">
         <img
           src={
             product.imageURL ? product.imageURL : "https://tinyurl.com/3ctc7svd"
@@ -18,18 +19,18 @@ const ProductItem = ({ product, handleAdd, handleRemove, deleteProduct }) => {
           className="w-20 h-20 rounded-md"
         />
         <div className="w-full">
-          <ul className="flex justify-between items-center capitalize font-semibold text-lg">
-            <li>{product.productName}</li>
-            <li className="font-medium text-sm bg-purple-500 px-2 rounded-md text-white">
+          <div className="flex justify-between items-center capitalize font-semibold text-lg">
+            <h2>{product.productName}</h2>
+            <span className="font-medium text-sm bg-purple-500 px-2 rounded-md text-white">
               {product.category}
-            </li>
-          </ul>
-          <ul className="font-medium">
-            <li>
+            </span>
+          </div>
+          <div>
+            <h3 className="font-medium">
               Expired in {countdown} {countdown === 1 ? "day" : "days"}
-            </li>
-            <li className="font-normal text-sm mt-1">{product.expiryDate}</li>
-          </ul>
+            </h3>
+            <h4 className="font-normal text-sm mt-1">{product.expiryDate}</h4>
+          </div>
         </div>
       </article>
       <article className="flex justify-between mt-3">
@@ -46,23 +47,28 @@ const ProductItem = ({ product, handleAdd, handleRemove, deleteProduct }) => {
           <li className="text-sm mt-1">Stocks level to restock</li>
         </ul>
       </article>
-      <ul className="flex justify-center items-center gap-3 mt-3 text-lg">
-        <li className="text-purple-700" onClick={() => toggleUnit()}>
-          <i className="fas fa-exchange-alt"></i>
-        </li>
-        <li className="text-green-500" onClick={() => handleAdd(product.id)}>
-          <i className="fas fa-plus-circle"></i>
-        </li>
-        <li
-          className="text-purple-700"
-          onClick={() => handleRemove(product.id)}
-        >
-          <i className="fas fa-minus-circle"></i>
-        </li>
-        <li className="text-red-500" onClick={() => deleteProduct(product.id)}>
-          <i className="fas fa-trash"></i>
-        </li>
-      </ul>
+      <div className="flex justify-center items-center gap-3 mt-3 text-lg">
+        <ButtonEdit
+          buttonStyle="text-purple-700"
+          deleteProduct={() => toggleUnit()}
+          icon="fas fa-exchange-alt"
+        />
+        <ButtonEdit
+          buttonStyle="text-green-500"
+          deleteProduct={() => handleAdd(product.id)}
+          icon="fas fa-plus-circle"
+        />
+        <ButtonEdit
+          buttonStyle="text-purple-700"
+          deleteProduct={() => handleRemove(product.id)}
+          icon="fas fa-minus-circle"
+        />
+        <ButtonEdit
+          buttonStyle="text-red-500"
+          deleteProduct={() => deleteProduct(product.id)}
+          icon="fas fa-trash"
+        />
+      </div>
     </section>
   )
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import ReorderItem from "./ReorderItem"
+import ReorderItem from "../ReorderItem/ReorderItem"
 import { FaTimes } from "react-icons/fa"
 import "./reorder.css"
 
