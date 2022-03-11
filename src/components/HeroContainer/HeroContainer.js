@@ -2,8 +2,6 @@ import React from "react"
 import Heading from "../Heading/Heading"
 import Text from "../Text/Text"
 import { FiEdit } from "react-icons/fi"
-import { BsExclamationTriangle } from "react-icons/bs"
-import Tools from "../Tools/Tools"
 
 const HeroContainer = ({ reorderStock, setShowForm, setShowReorderList }) => {
   return (

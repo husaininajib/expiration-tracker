@@ -8,12 +8,8 @@ import Option from "../components/Option/Option"
 
 const Form = ({ showForm, formData, handleChange, submitFormData }) => {
   return (
-    <div className={`form-container ${showForm ? "show" : ""}`}>
-      <form
-        action=""
-        className="grid gap-2 border m-0 p-0"
-        onSubmit={submitFormData}
-      >
+    <div className={`wrapper form-container ${showForm ? "show" : ""}`}>
+      <form action="" className="grid gap-2" onSubmit={submitFormData}>
         <div className="grid">
           <Label htmlFor="category" title="Category" />
           {/* <Input

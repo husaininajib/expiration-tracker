@@ -1,5 +1,5 @@
 .reorder-container {
-  position: fixed;
+  position: absolute;
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   z-index: 2;
@@ -9,7 +9,11 @@
   height: 100%;
   transform: translateX(-100%);
   transition: all 0.3s;
+  visibility: hidden;
+  opacity: 0;
 }
 .reorder-container.show {
   transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
 }

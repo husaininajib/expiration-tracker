@@ -6,25 +6,31 @@ import HeroContainer from "./components/HeroContainer/HeroContainer"
 import InventoryContainer from "./components/InventoryContainer/InventoryContainer"
 import useProducts from "./components/custom-hooks/useProducts"
 import useFormData from "./components/custom-hooks/useFormData"
-import useDisplayForm from "./components/custom-hooks/useDisplayForm"
 import useCategories from "./components/custom-hooks/useCategories"
 import useReorderPoint from "./components/custom-hooks/useReorderPoint"
 import ReorderList from "./components/ReorderList/ReorderList"
+import useDisplayMenu from "./components/custom-hooks/useDisplayMenu"
 import ProductAdjusted from "./components/ProductAdjusted"
 
 function App() {
-  const [showReorderList, setShowReorderList] = useState(false)
-  const { showForm, setShowForm, toolsOption } = useDisplayForm()
+  const { showForm, setShowForm, showReorderList, setShowReorderList } =
+    useDisplayMenu()
   const { products, setProducts } = useProducts()
   const { categories, setCategories, latestCategory } = useCategories(products)
   const [currentCategory, setCurrentCategory] = useState("all")
+  const [darkMode, setDarkMode] = useState(false)
   const { formData, submitFormData, handleChange, data } =
     useFormData(setProducts)
-  const { newReorder } = useReorderPoint(products)
+  const { reorderItems } = useReorderPoint(products)
 
   return (
     <>
-      <Navbar showForm={showForm} setShowForm={setShowForm} />
+      <Navbar
+        showForm={showForm}
+        setShowForm={setShowForm}
+        showReorderList={showReorderList}
+        setShowReorderList={setShowReorderList}
+      />
       <Form
         showForm={showForm}
         formData={formData}
@@ -38,14 +44,13 @@ function App() {
       <ReorderList
         showReorderList={showReorderList}
         setShowReorderList={setShowReorderList}
-        reorderList={newReorder}
+        reorderList={reorderItems}
       />
       <main className="wrapper border border-black">
         <HeroContainer
           showForm={showForm}
           setShowForm={setShowForm}
-          toolsOption={toolsOption}
-          reorderStock={newReorder}
+          reorderStock={reorderItems}
           showReorderList={showReorderList}
           setShowReorderList={setShowReorderList}
         />

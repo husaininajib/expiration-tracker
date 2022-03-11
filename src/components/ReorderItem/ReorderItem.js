@@ -23,7 +23,10 @@ const ReorderItem = ({ product }) => {
               {product.quantity === 1 ? "Stock Left:" : "Stocks Left:"}{" "}
               {product.quantity} PCS
             </li>
-            <li>Reorder Point: {product.dailyUsage * product.leadTime} PCS</li>
+            <li>
+              Reorder Point:{" "}
+              {+product.averageSalesPerDay * +product.daysToReceiveNewStock} PCS
+            </li>
           </ul>
         </div>
       </div>
