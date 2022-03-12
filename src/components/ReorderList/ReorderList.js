@@ -24,7 +24,7 @@ const ReorderList = ({ darkMode, reorderList, showReorderList }) => {
         </h1>
       </div>
       {reorderList.length < 1 ? (
-        <h2 className="px-4">No item to restock</h2>
+        <p style={{ color: darkMode ? "#c8c8c8" : "" }}>No item to restock</p>
       ) : (
         <div className="flex flex-col items-center gap-4">
           {reorderList.map((product) => {

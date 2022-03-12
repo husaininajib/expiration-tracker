@@ -9,7 +9,9 @@ const InventoryContainer = (props) => {
     <section className="wrapper px-4 mt-4">
       <Heading title="My Inventory" textColor={textColor} />
       {props.products.length < 1 ? (
-        <h2 className="mt-4">Add stock to track your inventory expiry date</h2>
+        <p className="mt-4" style={{ color: textColor }}>
+          Add stock to track your inventory expiry date
+        </p>
       ) : (
         <>
           <CategoryList
