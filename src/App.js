@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import "./App.css"
-import Form from "./Form/Form"
+// import Form from "./Form/Form"
+import Form from "./components/Form/Form"
 import Navbar from "./components/Navbar/Navbar"
 import HeroContainer from "./components/HeroContainer/HeroContainer"
 import InventoryContainer from "./components/InventoryContainer/InventoryContainer"

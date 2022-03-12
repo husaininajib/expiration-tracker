@@ -1,8 +1,8 @@
 import React from "react"
-import Label from "../components/Label/Label"
+import Label from "../Label/Label"
 import Input from "../Input/Input"
-import optionData from "../components/Option/data/optionData"
-import Option from "../components/Option/Option"
+import optionData from "../Option/data/optionData"
+import Option from "../Option/Option"
 
 const Form = ({
   darkMode,
