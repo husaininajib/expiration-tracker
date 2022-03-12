@@ -1,21 +1,26 @@
 import React from "react"
 import { HiViewGrid } from "react-icons/hi"
-import { BsFillMoonStarsFill } from "react-icons/bs"
+import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs"
 import { FaTimes } from "react-icons/fa"
-import LinkTag from "../LinkTag"
 
 const Navbar = ({
   showForm,
   setShowForm,
   showReorderList,
   setShowReorderList,
+  darkMode,
+  setDarkMode,
 }) => {
   const resetToggleMenu = () => {
     setShowForm(false)
     setShowReorderList(false)
   }
+  const textColor = darkMode ? "#c8c8c8" : "#ffffff"
   return (
-    <header className="" style={{ backgroundColor: "#7A3BED" }}>
+    <header
+      className=""
+      style={{ backgroundColor: darkMode ? "#1f1f1f" : "#7A3BED" }}
+    >
       <nav className="wrapper flex items-center justify-between h-14 text-white text-lg px-4">
         {showForm || showReorderList ? (
           <FaTimes
@@ -25,24 +30,23 @@ const Navbar = ({
         ) : (
           <HiViewGrid
             className="text-2xl cursor-pointer"
+            style={{ color: textColor }}
             onClick={() => setShowForm(true)}
           />
         )}
-
-        {/* {showForm ? (
-          <FaTimes
-            onClick={() => setShowForm(!showForm)}
-            className="text-xl cursor-pointer"
+        <h1 style={{ color: textColor }}>Inventory Tracker</h1>
+        {darkMode ? (
+          <BsSunFill
+            className="text-xl cursor-pointer text-yellow-300"
+            onClick={() => setDarkMode(!darkMode)}
           />
         ) : (
-          <HiViewGrid
-            onClick={() => setShowForm(!showForm)}
-            className="text-2xl cursor-pointer"
+          <BsFillMoonStarsFill
+            className="text-lg cursor-pointer"
+            style={{ color: textColor }}
+            onClick={() => setDarkMode(!darkMode)}
           />
-        )} */}
-
-        <LinkTag link="" title="Inventory Tracker" />
-        <BsFillMoonStarsFill className="text-lg cursor-pointer" />
+        )}
       </nav>
     </header>
   )

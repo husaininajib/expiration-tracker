@@ -18,10 +18,16 @@ function App() {
   const { products, setProducts } = useProducts()
   const { categories, setCategories, latestCategory } = useCategories(products)
   const [currentCategory, setCurrentCategory] = useState("all")
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(
+    JSON.parse(localStorage.getItem("darkMode")) || false
+  )
   const { formData, submitFormData, handleChange, data } =
     useFormData(setProducts)
   const { reorderItems } = useReorderPoint(products)
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode))
+  }, [darkMode])
 
   return (
     <>
@@ -30,8 +36,11 @@ function App() {
         setShowForm={setShowForm}
         showReorderList={showReorderList}
         setShowReorderList={setShowReorderList}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
       />
       <Form
+        darkMode={darkMode}
         showForm={showForm}
         formData={formData}
         handleChange={handleChange}
@@ -42,12 +51,19 @@ function App() {
         setCategories={setCategories}
       />
       <ReorderList
+        darkMode={darkMode}
         showReorderList={showReorderList}
         setShowReorderList={setShowReorderList}
         reorderList={reorderItems}
       />
-      <main className="wrapper border border-black">
+      <main
+        style={{
+          backgroundColor: darkMode ? "#000000" : "",
+          paddingBottom: "2rem",
+        }}
+      >
         <HeroContainer
+          darkMode={darkMode}
           showForm={showForm}
           setShowForm={setShowForm}
           reorderStock={reorderItems}
@@ -55,6 +71,7 @@ function App() {
           setShowReorderList={setShowReorderList}
         />
         <InventoryContainer
+          darkMode={darkMode}
           products={products}
           setProducts={setProducts}
           categories={latestCategory}

@@ -120,6 +120,8 @@ const useFormData = (setProducts) => {
   // TODO: check if all form input is filled
   function checkFormData() {
     if (
+      formData.category !== "select category" &&
+      formData.category &&
       formData.productName &&
       formData.expiryDate &&
       formData.quantity &&

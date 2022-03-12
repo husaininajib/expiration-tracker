@@ -2,39 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  min-height: 100%;
+body,
+#root,
+main {
+  min-height: 100vh;
 }
 body {
-  height: 100%;
   background-color: #f8f9d2;
   background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
 }
-
+#root {
+  position: relative;
+}
 .wrapper {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
-
-.tools .card {
-  background-color: #d8c6f8;
-}
-.tools .card:nth-child(2) {
-  background-color: #f9e1d5;
+form {
+  min-width: 20rem;
 }
 .form-container {
   position: absolute;
-  background-color: #f8f9d2;
-  background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
   z-index: 2;
   top: 3.5rem;
   left: 0;
   right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-height: calc(100% - 3.5rem);
   transform: translateX(-100%);
   transition: all 0.3s;
   opacity: 0;
@@ -45,6 +39,20 @@ body {
   opacity: 1;
   visibility: visible;
 }
-form {
-  min-width: 20rem;
+.reorder-container {
+  position: absolute;
+  z-index: 2;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  min-height: calc(100% - 3.5rem);
+  transform: translateX(-100%);
+  transition: all 0.3s;
+  visibility: hidden;
+  opacity: 0;
+}
+.reorder-container.show {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
 }

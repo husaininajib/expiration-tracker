@@ -1,4 +1,5 @@
 export default [
+  "select category",
   "fruit",
   "vegetables",
   "meat",

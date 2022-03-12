@@ -9,7 +9,7 @@ const ProductItem = ({ product, handleAdd, handleRemove, deleteProduct }) => {
     useCalculation(product)
 
   return (
-    <section className="w-full mb-6 bg-purple-200 p-4 rounded-lg">
+    <section className="w-full bg-purple-200 p-4 rounded-lg">
       <article className="flex gap-4">
         <img
           src={

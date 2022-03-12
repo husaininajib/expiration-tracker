@@ -2,7 +2,7 @@ import React from "react"
 
 const ReorderItem = ({ product }) => {
   return (
-    <article className="w-full px-4 mb-6">
+    <article className="w-full p-4 rounded-md bg-purple-300">
       <div className="flex gap-4">
         <img
           src={
@@ -24,7 +24,7 @@ const ReorderItem = ({ product }) => {
               {product.quantity} PCS
             </li>
             <li>
-              Reorder Point:{" "}
+              Reorder Stock Level:{" "}
               {+product.averageSalesPerDay * +product.daysToReceiveNewStock} PCS
             </li>
           </ul>

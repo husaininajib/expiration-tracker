@@ -1,17 +1,36 @@
 import React from "react"
 import Label from "../components/Label/Label"
 import Input from "../Input/Input"
-import formStyle from "./style/formStyle"
 import optionData from "../components/Option/data/optionData"
-import "./form.css"
 import Option from "../components/Option/Option"
 
-const Form = ({ showForm, formData, handleChange, submitFormData }) => {
+const Form = ({
+  darkMode,
+  showForm,
+  formData,
+  handleChange,
+  submitFormData,
+}) => {
+  const formContainerStyle = {
+    backgroundColor: darkMode ? "#000000" : "#f8f9d2",
+    backgroundImage: darkMode
+      ? ""
+      : "linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%)",
+  }
   return (
-    <div className={`wrapper form-container ${showForm ? "show" : ""}`}>
-      <form action="" className="grid gap-2" onSubmit={submitFormData}>
+    <div
+      className={`wrapper form-container flex flex-col items-center ${
+        showForm ? "show" : ""
+      }`}
+      style={formContainerStyle}
+    >
+      <form action="" className="grid gap-2 mt-12" onSubmit={submitFormData}>
         <div className="grid">
-          <Label htmlFor="category" title="Category" />
+          <Label
+            htmlFor="category"
+            title="Category *"
+            textColor={darkMode ? "#c8c8c8" : ""}
+          />
           {/* <Input
             type="text"
             name="category"
@@ -20,7 +39,7 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
           /> */}
           <select
             name="category"
-            className={formStyle.input}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             onChange={handleChange}
             value={formData.category}
           >
@@ -30,7 +49,11 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
           </select>
         </div>
         <div className="grid">
-          <Label htmlFor="productName" title="Product Name" />
+          <Label
+            htmlFor="productName"
+            title="Product Name *"
+            textColor={darkMode ? "#c8c8c8" : ""}
+          />
           <Input
             type="text"
             name="productName"
@@ -48,7 +71,11 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
           />
         </div> */}
         <div className="grid">
-          <Label htmlFor="imageURL" title="Image URL" />
+          <Label
+            htmlFor="imageURL"
+            title="Product Image (in URL)"
+            textColor={darkMode ? "#c8c8c8" : ""}
+          />
           <Input
             type="url"
             name="imageURL"
@@ -57,7 +84,11 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
           />
         </div>
         <div className="grid">
-          <Label htmlFor="expiryDate" title="Expiry Date" />
+          <Label
+            htmlFor="expiryDate"
+            title="Expiry Date *"
+            textColor={darkMode ? "#c8c8c8" : ""}
+          />
           <Input
             type="date"
             name="expiryDate"
@@ -66,7 +97,11 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
           />
         </div>
         <div className="grid">
-          <Label htmlFor="quantity" title="Quantity" />
+          <Label
+            htmlFor="quantity"
+            title="Quantity *"
+            textColor={darkMode ? "#c8c8c8" : ""}
+          />
           <Input
             type="number"
             name="quantity"
@@ -76,7 +111,11 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
         </div>
         <article className="flex gap-3">
           <div className="grid grow">
-            <Label htmlFor="weightPerQuantity" title="Weight" />
+            <Label
+              htmlFor="weightPerQuantity"
+              title="Weight *"
+              textColor={darkMode ? "#c8c8c8" : ""}
+            />
             <Input
               type="number"
               name="weightPerQuantity"
@@ -85,10 +124,14 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
             />
           </div>
           <div>
-            <Label htmlFor="weightUnit" title="Unit" />
+            <Label
+              htmlFor="weightUnit"
+              title="Unit *"
+              textColor={darkMode ? "#c8c8c8" : ""}
+            />
             <select
               name="weightUnit"
-              className={formStyle.input}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               onChange={handleChange}
               value={formData.weightUnit}
             >
@@ -101,6 +144,7 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
           <Label
             htmlFor="averageSalesPerDay"
             title="Average Product sold Per Day"
+            textColor={darkMode ? "#c8c8c8" : ""}
           />
           <Input
             type="number"
@@ -112,7 +156,8 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
         <div className="grid">
           <Label
             htmlFor="daysToReceiveNewStock"
-            title="Days To Receive New Stock"
+            title="Days Taken To Receive New Stock"
+            textColor={darkMode ? "#c8c8c8" : ""}
           />
           <Input
             type="number"
@@ -121,8 +166,10 @@ const Form = ({ showForm, formData, handleChange, submitFormData }) => {
             handleChange={handleChange}
           />
         </div>
-
-        <button type="submit" className={formStyle.button}>
+        <button
+          type="submit"
+          className="text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full mt-3"
+        >
           Submit
         </button>
       </form>

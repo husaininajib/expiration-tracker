@@ -7,7 +7,7 @@ const ProductContainer = ({ products, setProducts, currentCategory }) => {
   const { handleAdd, handleRemove, deleteProduct, filteredProducts } =
     useProductsFeatures(products, setProducts, currentCategory)
   return (
-    <>
+    <div className="flex flex-col gap-6">
       {filteredProducts.map((product) => {
         return (
           <ProductItem
@@ -30,7 +30,7 @@ const ProductContainer = ({ products, setProducts, currentCategory }) => {
           />
         )
       })} */}
-    </>
+    </div>
   )
 }
 

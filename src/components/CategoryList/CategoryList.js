@@ -1,23 +1,31 @@
 import React, { useState } from "react"
 
-const CategoryList = ({ categories, currentCategory, setCurrentCategory }) => {
+const CategoryList = ({
+  darkMode,
+  categories,
+  currentCategory,
+  setCurrentCategory,
+}) => {
   return (
     <div className="mb-7">
-      <ul className="capitalize flex mt-4">
+      <div className="flex mt-4">
         {categories.map((item, index) => {
           return (
-            <li
-              className={`${
+            <button
+              className={`px-2 py-1 capitalize rounded-sm ${
                 currentCategory === item ? "bg-purple-700 text-white" : ""
-              } px-2 py-1 cursor-pointer`}
+              }`}
+              style={{
+                color: darkMode && currentCategory !== item ? "#ffffff" : "",
+              }}
               key={index}
               onClick={() => setCurrentCategory(item)}
             >
               {item}
-            </li>
+            </button>
           )
         })}
-      </ul>
+      </div>
     </div>
   )
 }

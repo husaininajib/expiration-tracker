@@ -1,9 +1,12 @@
 import React from "react"
-import formStyle from "../../Form/style/formStyle"
 
 const Label = (props) => {
   return (
-    <label htmlFor={props.htmlFor} className={formStyle.label}>
+    <label
+      htmlFor={props.htmlFor}
+      className="block mb-2 text-sm font-medium text-gray-900"
+      style={{ color: props.textColor }}
+    >
       {props.title}
     </label>
   )
