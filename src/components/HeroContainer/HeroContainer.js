@@ -14,8 +14,8 @@ const HeroContainer = ({
     <section className="wrapper px-4 pt-8 text-center">
       <Heading title="Welcome" textColor={textColor} />
       <Text
-        content="Track your inventory life and reduce waste and spoilage."
-        classStyle="text-base mt-1"
+        content="Track your inventory lifespan to prevent product wastage"
+        classStyle="text-base"
         textColor={textColor}
       />
       <article className="tools mt-8 flex gap-4 justify-center ">
